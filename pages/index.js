@@ -8,7 +8,7 @@ export default () => (
     <Nav />
     <div className="hero">
       <h1 className="title">Beredd to crea te-ext-app-cli (Create Nxt.js App building tools)</h1>
-      <p className="description">To get started, edit <code>pages/index.js</code> and save to reload.</p>
+      <p className="description">To get started, edit <code>pages/inddex.js</code> and save to reload.</p>
       <div className="row">
         <Link href="//nextjs.org/docs/">
           <a className="card">
