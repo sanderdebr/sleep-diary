@@ -18,7 +18,7 @@ export default () => (
         </Link>
         <Link href="//github.com/themodernjavascript/create-next-app-cli">
           <a className="card">
-            <h3>Create Next App CLI &rarr;</h3>
+            <h3>Create Next pp CLI &rarr;</h3>
             <p>Was this tools hlful?</p>
           </a>
         </Link>
