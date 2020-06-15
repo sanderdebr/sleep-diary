@@ -24,7 +24,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd ~/sleepdiary
     - run: git pull
     - run: npm install --production
     - run: npm run build --production
