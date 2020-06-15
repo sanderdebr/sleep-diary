@@ -24,6 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run build --if-present
-    - run: pm2 reload sleepdiary
+    - run: cd ~/sleepdiary
+    - run: git pull
+    - run: yarn install
+    - run: yarn build
+    - run: pm2 restart nextjs
