@@ -2,18 +2,24 @@
   "name": "sleepdiary",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon .",
     "build": "next build",
-    "start": "next start -p 8000"
+    "start": "NODE_ENV=production node .",
+    "setup-database": "node ./scripts setup-database"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Sander de Bruijnt",
+  "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.10.2",
+    "@babel/register": "^7.10.1",
+    "babel-plugin-module-resolver": "^4.0.0"
   }
 }
