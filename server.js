@@ -3,8 +3,9 @@ import * as Routes from '~/routes';
 import express from 'express';
 import next from 'next';
 
+const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 8008;
-const app = next({ quiet: false });
+const app = next({ dev, quiet: false });
 
 app.prepare().then(() => {
     const server = express();

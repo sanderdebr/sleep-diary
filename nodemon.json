@@ -3,7 +3,6 @@
     "ignore": ["node_modules", ".next"],
     "watch": [
       "routes/**/*",
-      "common/**/*",
       "components/**/*",
       "pages/**/*",
       "public/**/*",
