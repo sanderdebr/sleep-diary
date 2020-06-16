@@ -1,14 +1,19 @@
-import Link from 'next/link';
-import Head from '~/components/Head';
-import Container from '~/components/Container';
+import Head from "~/components/Head";
 
-const Page = (props) => (
-  <>
-    <Head title="Home" />
-    <Container>
-      <h1>Sign in</h1>
-    </Container>
-  </>
-);
+function Page(props) {
+  return (
+    <>
+      <Head title="Home | SleepDiary" />
+      <h1>SleepDiary - {props.name}</h1>
+    </>
+  );
+}
 
+export const getStaticProps = async () => {
+  return {
+    props: {
+      name: "berend",
+    },
+  };
+};
 export default Page;

@@ -1,27 +1,30 @@
 {
-    "presets": [
-      [
-        "next/babel",
-        {
-          "transform-runtime": {
-            "useESModules": false
-          }
+  "presets": [
+    [
+      "next/babel",
+      {
+        "transform-runtime": {
+          "useESModules": false
         }
-      ]
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
     ],
-    "plugins": [
-      [
-        "styled-components",
-        {
-          "ssr": true,
-          "displayName": true,
-          "preprocess": false
-        }
-      ],
-      ["module-resolver", {
+    [
+      "module-resolver",
+      {
         "alias": {
           "~": "./"
         }
-      }]
+      }
     ]
-  }
+  ]
+}

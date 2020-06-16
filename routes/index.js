@@ -1,5 +1,5 @@
-const signIn = async (req, res, app) => {
-    app.render(req, res, '/')
-}
+import signIn from "./sign-in";
 
- module.exports = { signIn }
+module.exports = {
+  signIn,
+};

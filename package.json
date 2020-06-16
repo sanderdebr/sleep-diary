@@ -9,7 +9,7 @@
     "setup-database": "node ./scripts setup-database"
   },
   "keywords": [],
-  "author": "Sander de Bruijnt",
+  "author": "Sander de Bruijn",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
@@ -21,6 +21,7 @@
     "@babel/preset-env": "^7.10.2",
     "@babel/register": "^7.10.1",
     "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-styled-components": "^1.10.7",
     "nodemon": "^2.0.4",
     "styled-components": "^5.1.1"
   }
