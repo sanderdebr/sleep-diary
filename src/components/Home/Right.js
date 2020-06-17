@@ -3,10 +3,14 @@ import styled from "styled-components";
 
 import LazyImage from "~/src/components/LazyImage";
 
-function Right({ ...props }) {
+function Right() {
   return (
     <ImgWrapper>
-      <LazyImage {...props} />
+      <LazyImage
+        alt="home-image"
+        src="./home.jpg"
+        placeholder="./home-placeholder.jpg"
+      />
     </ImgWrapper>
   );
 }
@@ -14,9 +18,11 @@ function Right({ ...props }) {
 const ImgWrapper = styled.div`
   height: 100%;
   width: 100%;
-  background-color: black;
-  background-size: cover;
-  background-position: center;
+  background-color: ${({ theme }) => theme.palette.primaryAction};
+  img {
+    width: 100%;
+    height: 100%;
+  }
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     width: 50%;

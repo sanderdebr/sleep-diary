@@ -52,6 +52,11 @@ function Head(props) {
       <meta property="og:image" content={props.ogImage || defaultOGImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <script
+        src="https://apis.google.com/js/platform.js?onload=renderButton"
+        async
+        defer
+      ></script>
     </NextHead>
   );
 }

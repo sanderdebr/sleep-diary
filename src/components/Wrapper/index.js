@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+import Container from "./Container";
+import Wave from "./Wave";
+
+function Wrapper({ children }) {
+  return (
+    <WrapperStyles>
+      <Container>{children}</Container>
+      <Wave />
+    </WrapperStyles>
+  );
+}
+
+const WrapperStyles = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;

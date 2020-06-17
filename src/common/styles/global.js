@@ -9,5 +9,7 @@ export const GlobalStyles = createGlobalStyle`
         display: block !important;
         margin: 0;
         color: ${({ theme }) => theme.palette.primary};
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 `;
