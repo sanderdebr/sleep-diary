@@ -1,4 +1,4 @@
-import * as Routes from "~/routes";
+import * as Routes from "~/src/routes";
 
 import express from "express";
 import next from "next";
