@@ -11,8 +11,18 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  server.use("/public", express.static("public"));
+
+  server.post("/api/sign-in", async (req, res) => {
+    return await Routes.api.signIn(req, res);
+  });
+
   server.get("/", async (req, res) => {
     return await Routes.signIn(req, res, app);
+  });
+
+  server.get("/sign-in-callback", async (req, res) => {
+    return await Routes.signInCallback(req, res, app);
   });
 
   server.all("*", (req, res) => {

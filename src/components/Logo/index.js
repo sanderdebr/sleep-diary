@@ -7,10 +7,12 @@ import Badge from "./Badge";
 function Logo() {
   return (
     <Link href="/">
-      <LogoWrapper>
-        <Badge></Badge>
-        <H3>SleepDiary</H3>
-      </LogoWrapper>
+      <a>
+        <LogoWrapper>
+          <Badge></Badge>
+          <H3>SleepDiary</H3>
+        </LogoWrapper>
+      </a>
     </Link>
   );
 }
