@@ -3,7 +3,6 @@ import styled from "styled-components";
 function Badge() {
   return (
     <StyledSvg
-      id="Layer_1"
       enable-background="new 0 0 512 512"
       height="28"
       viewBox="0 0 512 512"

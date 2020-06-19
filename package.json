@@ -12,12 +12,9 @@
   "author": "Sander de Bruijn",
   "license": "MIT",
   "dependencies": {
+    "@welldone-software/why-did-you-render": "^4.2.5",
     "express": "^4.17.1",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^8.0.0",
     "next": "^9.4.4",
-    "next-optimized-images": "^2.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },

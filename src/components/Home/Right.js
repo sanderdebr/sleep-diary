@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import LazyImage from "~/src/components/LazyImage";
@@ -6,6 +6,7 @@ import LazyImage from "~/src/components/LazyImage";
 function Right() {
   return (
     <ImgWrapper>
+      <h1>Hello {objState.name} !</h1>
       <LazyImage
         alt="home-image"
         src="./home.jpg"
