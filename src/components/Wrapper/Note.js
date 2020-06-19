@@ -5,7 +5,7 @@ function Note() {
   return (
     <NoteWrapper>
       <Link href="/privacy">Privacy Policy</Link> |{" "}
-      <Link href="/">Service</Link>
+      <Link href="/terms-and-conditions">Terms and Conditions</Link>
     </NoteWrapper>
   );
 }

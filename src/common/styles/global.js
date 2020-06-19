@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
         font-display: swap;
     }
-
+    
     a {
         text-decoration: none;
         cursor: pointer;

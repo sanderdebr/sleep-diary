@@ -1,10 +1,12 @@
+import { withRouter } from "next/router";
 import styled from "styled-components";
 
 import Note from "./Note";
 
-function Container({ children }) {
+function Container({ children, router }) {
+  const { pathname } = router;
   return (
-    <ContainerWrapper>
+    <ContainerWrapper path={pathname}>
       {children}
       <Note />
     </ContainerWrapper>
@@ -20,11 +22,11 @@ const ContainerWrapper = styled.main`
   box-shadow: ${({ theme }) => theme.mixins.boxShadow};
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
-    height: 80vh;
+    height: ${({ path }) => (path === "/" ? "80vw" : "auto")};
     margin: 0;
     max-width: 1200px;
-    max-height: 600px;
+    max-height: ${({ path }) => (path === "/" ? "600px" : "auto")};
   }
 `;
 
-export default Container;
+export default withRouter(Container);

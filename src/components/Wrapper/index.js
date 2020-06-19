@@ -1,11 +1,14 @@
+import { withRouter } from "next/router";
 import styled from "styled-components";
 
 import Container from "./Container";
 import Wave from "./Wave";
 
-function Wrapper({ children }) {
+function Wrapper({ children, router }) {
+  const { pathname } = router;
+
   return (
-    <WrapperStyles>
+    <WrapperStyles path={pathname}>
       <Container>{children}</Container>
       <Wave />
     </WrapperStyles>
@@ -13,7 +16,7 @@ function Wrapper({ children }) {
 }
 
 const WrapperStyles = styled.div`
-  position: absolute;
+  position: ${({ path }) => (path === "/" ? "absolute" : "relative")};
   width: 100%;
   height: 100%;
   display: flex;
@@ -22,4 +25,4 @@ const WrapperStyles = styled.div`
   background-color: ${({ theme }) => theme.palette.bgColor};
 `;
 
-export default Wrapper;
+export default withRouter(Wrapper);
