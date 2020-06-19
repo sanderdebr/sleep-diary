@@ -4,6 +4,7 @@ export const GlobalStyles = createGlobalStyle`
     * {
         box-sizing: border-box;
     }
+
     html, body {
         font-family: 'Montserrat Alternates', sans-serif;
         display: block !important;

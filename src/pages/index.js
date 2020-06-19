@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import loadFonts from "~/src/common/fonts";
+
 import Head from "~/src/components/Head";
 import Home from "~/src/components/Home";
 import Left from "~/src/components/Home/Left";
@@ -8,6 +11,10 @@ import { H2 } from "~/src/components/Text";
 import GoogleSignInBtn from "~/src/components/GoogleSignInBtn";
 
 function Page() {
+  useEffect(() => {
+    loadFonts();
+  }, []);
+
   return (
     <>
       <Head title="Home | SleepDiary" />

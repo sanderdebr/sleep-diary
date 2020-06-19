@@ -36,10 +36,6 @@ function Head(props) {
         href="/static/apple-touch-icon.png"
       />
       <link rel="mask-icon" href="/static/favicon-mask.svg" color="#000000" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;500;700&display=swap"
-        rel="stylesheet"
-      ></link>
       <meta property="og:url" content={props.url || defaultOGURL} />
       <meta property="og:title" content={props.title || ""} />
       <meta

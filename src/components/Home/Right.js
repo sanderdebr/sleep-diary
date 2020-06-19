@@ -6,11 +6,10 @@ import LazyImage from "~/src/components/LazyImage";
 function Right() {
   return (
     <ImgWrapper>
-      <h1>Hello {objState.name} !</h1>
       <LazyImage
         alt="home-image"
-        src="./home.jpg"
-        placeholder="./home-placeholder.jpg"
+        src="./images/home.webp"
+        placeholder="./images/home-placeholder.jpg"
       />
     </ImgWrapper>
   );
