@@ -1,14 +1,27 @@
 import styled from "styled-components";
 
-const Container = styled.main`
+import Note from "./Note";
+
+function Container({ children }) {
+  return (
+    <ContainerWrapper>
+      {children}
+      <Note />
+    </ContainerWrapper>
+  );
+}
+
+const ContainerWrapper = styled.main`
   z-index: 1;
   width: 80vw;
-  height: 80vh;
+  height: 100%;
   background-color: #fff;
-  margin: ${({ theme }) => theme.spacing.gutter}px;
+  margin-top: ${({ theme }) => theme.spacing.gutter * 2}px;
   box-shadow: ${({ theme }) => theme.mixins.boxShadow};
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    height: 80vh;
+    margin: 0;
     max-width: 1200px;
     max-height: 600px;
   }

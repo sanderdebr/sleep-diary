@@ -7,10 +7,20 @@ export const GlobalStyles = createGlobalStyle`
 
     html, body {
         font-family: 'Montserrat Alternates', sans-serif;
-        display: block !important;
         margin: 0;
         color: ${({ theme }) => theme.palette.primary};
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        font-display: swap;
+    }
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+        color: inherit;
+        transition: 250ms ease;
+        &:hover {
+            color: ${({ theme }) => theme.palette.primaryAction}
+        }
     }
 `;

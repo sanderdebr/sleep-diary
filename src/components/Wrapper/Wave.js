@@ -18,7 +18,7 @@ function Wave() {
 const WaveWrapper = styled.div`
   width: 100%;
   height: auto;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 `;
 

@@ -7,8 +7,8 @@ function GoogleSignInBtn() {
   function onFailure(error) {
     console.log(error);
   }
-  function renderButton() {
-    alert();
+
+  useEffect(() => {
     gapi.signin2.render("my-signin2", {
       scope: "profile email",
       width: 240,
@@ -18,10 +18,6 @@ function GoogleSignInBtn() {
       onsuccess: onSuccess,
       onfailure: onFailure,
     });
-  }
-
-  useEffect(() => {
-    // renderButton();
   });
 
   return <div id="my-signin2"></div>;
