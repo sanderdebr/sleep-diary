@@ -1,17 +1,15 @@
 import { useEffect } from "react";
-import Link from "next/link";
 
 import loadFonts from "~/src/common/fonts";
+
 import Head from "~/src/components/Head";
-import Home from "~/src/components/Home";
-import Left from "~/src/components/Home/Left";
-import Right from "~/src/components/Home/Right";
+import { Home, Left, Right } from "~/src/components/HomeWrapper";
 import Logo from "~/src/components/Logo";
 import { H2 } from "~/src/components/Text";
 import GoogleSignInBtn from "~/src/components/GoogleSignInBtn";
+import { FormGroup, Input, Button } from "~/src/components/Form";
 
-function Page(props) {
-  console.log(props);
+function Page() {
   useEffect(() => {
     loadFonts();
   }, []);
@@ -23,23 +21,17 @@ function Page(props) {
         <Left>
           <Logo />
           <H2>Please login to your account.</H2>
-          <Link href="/">
-            <a>Create an account through Google.</a>
-          </Link>
           <GoogleSignInBtn />
+          <FormGroup>
+            <Input placeholder="E-mail address" type="text" />
+            <Input placeholder="Password" type="password" />
+            <Button />
+          </FormGroup>
         </Left>
         <Right />
       </Home>
     </>
   );
 }
-
-Page.getInitialProps = async (ctx) => {
-  return {
-    props: {
-      googleURL: ctx.query.googleURL,
-    },
-  };
-};
 
 export default Page;

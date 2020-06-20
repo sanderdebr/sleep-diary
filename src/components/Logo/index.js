@@ -24,6 +24,13 @@ const LogoWrapper = styled.div`
 
   h3 {
     margin-left: 2.5rem;
+    ${({ theme }) =>
+      theme.mixins.gradientBg(
+        theme.palette.primaryAction,
+        theme.palette.secondaryAction
+      )}
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 

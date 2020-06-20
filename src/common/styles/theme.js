@@ -1,9 +1,9 @@
 const palette = {
-  primary: "#1d1a4d",
+  primary: "#52A0FD",
   secondary: "#908fa8",
-  primaryAction: "#0054ff",
-  secondaryAction: "#ff384f",
-  tertiaryAction: "#7847f3",
+  primaryAction: "#52A0FD",
+  secondaryAction: "#00e2fa",
+  tertiaryAction: "#44ea76",
   bgColor: "#f9f9f9",
 };
 
@@ -20,6 +20,10 @@ const spacing = {
 const mixins = {
   boxShadow:
     "0 1px 1px rgba(0, 0, 0, 0.025), 0 2px 2px rgba(0, 0, 0, 0.025),0 4px 4px rgba(0, 0, 0, 0.025), 0 8px 8px rgba(0, 0, 0, 0.025), 0 16px 16px rgba(0, 0, 0, 0.025)",
+  gradientBg: (startColor, endColor) => `background: ${startColor};
+	background: -moz-linear-gradient(left,  ${startColor} 0%, endColor 80%,${endColor} 100%);
+	background: -webkit-linear-gradient(left,  ${startColor} 0%, ${endColor} 80%,${endColor} 100%);
+	background: linear-gradient(to right,  ${startColor} 0%, ${endColor} 80%,${endColor} 100%);`,
 };
 
 const theme = {

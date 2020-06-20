@@ -23,4 +23,8 @@ export const GlobalStyles = createGlobalStyle`
             color: ${({ theme }) => theme.palette.primaryAction}
         }
     }
+
+    :focus {
+        outline: none;
+    }
 `;

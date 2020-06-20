@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 
 function GoogleSignInBtn() {
   function onSuccess(googleUser) {
@@ -20,7 +21,11 @@ function GoogleSignInBtn() {
     });
   });
 
-  return <div id="my-signin2"></div>;
+  return <ButtonStyles id="my-signin2"></ButtonStyles>;
 }
+
+const ButtonStyles = styled.div`
+  font-family: inherit;
+`;
 
 export default GoogleSignInBtn;

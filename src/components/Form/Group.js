@@ -1,0 +1,43 @@
+import styled from "styled-components";
+
+function FormGroup({ text = "OR", children }) {
+  return (
+    <GroupStyles>
+      <Title>{text}</Title>
+      {children}
+    </GroupStyles>
+  );
+}
+
+const GroupStyles = styled.form`
+  margin: 3rem 0;
+`;
+
+const Title = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.palette.secondary};
+  position: relative;
+  margin: 2rem 0;
+
+  &:before,
+  &:after {
+    position: absolute;
+    width: 40%;
+    content: "";
+    height: 1px;
+    background-color: ${({ theme }) => theme.palette.secondary};
+  }
+
+  &:before {
+    left: 0;
+  }
+
+  &:after {
+    right: 0;
+  }
+`;
+
+export default FormGroup;

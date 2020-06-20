@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import Left from "./Left";
+import Right from "./Right";
+
 const Home = styled.div`
   display: flex;
   align-items: flex-start;
@@ -11,4 +14,4 @@ const Home = styled.div`
   }
 `;
 
-export default Home;
+export { Home, Left, Right };
