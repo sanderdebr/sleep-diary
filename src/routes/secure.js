@@ -1,4 +1,4 @@
-import * as Data from "~/common/data";
+import * as Data from "~/common/session";
 
 export default async (req, res, app) => {
   const { viewer } = await Data.getViewer(req);

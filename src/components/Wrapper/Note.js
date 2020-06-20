@@ -4,11 +4,11 @@ import Link from "next/link";
 function Note() {
   return (
     <NoteWrapper>
-      <Link href="/privacy">
+      <Link href="/help/privacy">
         <a>Privacy Policy</a>
       </Link>{" "}
       |{" "}
-      <Link href="/terms-and-conditions">
+      <Link href="/help/terms-and-conditions">
         <a>Terms and Conditions</a>
       </Link>
     </NoteWrapper>

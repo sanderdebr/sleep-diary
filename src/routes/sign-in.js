@@ -1,5 +1,5 @@
 import * as Credentials from "~/src/common/credentials";
-import * as Data from "~/src/common/data";
+import * as Data from "~/src/common/session";
 
 const google = require("googleapis").google;
 const OAuth2 = google.auth.OAuth2;

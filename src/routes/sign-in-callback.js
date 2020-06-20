@@ -1,6 +1,8 @@
 import * as Credentials from "~/src/common/credentials";
+import * as Database from "~/src/common/database";
 
 import JWT from "jsonwebtoken";
+import BCrypt from "bcrypt";
 
 const google = require("googleapis").google;
 const OAuth2 = google.auth.OAuth2;
@@ -40,9 +42,11 @@ export default async (req, res, app) => {
       personFields: "emailAddresses,names,organizations,memberships",
     });
 
-    const email = response.data.emailAddresses;
+    const email = response.data.emailAddresses[0].value;
+    const name = response.data.names[0].displayName;
+    const password = BCrypt.getSaltSync(10);
 
-    console.log("EMAIL: ", email);
+    let user = await Database.getUserByEmail({ email });
 
     const authToken = JWT.sign(
       { user: "berend", email: "email" },

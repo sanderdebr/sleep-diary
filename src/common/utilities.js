@@ -1,4 +1,6 @@
-import * as Strings from "~/src/common/strings";
+export const isEmpty = (string) => {
+  return !string || !string.toString().trim();
+};
 
 export const getToken = (req) => {
   if (Strings.isEmpty(req.headers.cookie)) {
