@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Head from "~/src/components/Head";
 import Box from "~/src/components/Box";
 import Logo from "~/src/components/Logo";
