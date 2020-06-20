@@ -16,7 +16,6 @@ function Wrapper({ children, router }) {
 }
 
 const WrapperStyles = styled.div`
-  position: ${({ path }) => (path === "/" ? "absolute" : "relative")};
   width: 100%;
   height: 100%;
   display: flex;

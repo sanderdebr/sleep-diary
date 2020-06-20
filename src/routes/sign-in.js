@@ -1,4 +1,5 @@
 import * as Credentials from "~/src/common/credentials";
+import * as Data from "~/src/common/data";
 
 const google = require("googleapis").google;
 const OAuth2 = google.auth.OAuth2;
@@ -10,6 +11,7 @@ export default async (req, res, app) => {
     Credentials.REDIRECT_URIS
   );
 
+  // Generates Google Auth URL and provides to homepage
   const googleURL = client.generateAuthUrl({
     access_type: "offline",
     scope: [
@@ -20,5 +22,11 @@ export default async (req, res, app) => {
     prompt: "consent",
   });
 
-  app.render(req, res, "/", { googleURL });
+  const { viewer } = await Data.getViewer(req);
+
+  if (!viewer || viewer.error) {
+    return app.render(req, res, "/", { googleURL, viewer: null });
+  }
+
+  app.render(req, res, "/", { googleURL, viewer });
 };

@@ -18,12 +18,12 @@ const ContainerWrapper = styled.main`
   width: 80vw;
   height: 100%;
   background-color: #fff;
-  margin-top: ${({ theme }) => theme.spacing.gutter * 2}px;
+  margin-top: ${({ theme }) => theme.spacing.gutter}px;
+  margin-bottom: ${({ theme }) => theme.spacing.gutter}px;
   box-shadow: ${({ theme }) => theme.mixins.boxShadow};
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     height: ${({ path }) => (path === "/" ? "80vw" : "auto")};
-    margin: 0;
     max-width: 1200px;
     max-height: ${({ path }) => (path === "/" ? "600px" : "auto")};
   }

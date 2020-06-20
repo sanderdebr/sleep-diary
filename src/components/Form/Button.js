@@ -17,16 +17,9 @@ const Wrapper = styled.div`
 `;
 
 const ButtonStyles = styled.button`
-  &:before,
-  span {
-    ${({ theme }) =>
-      theme.mixins.gradientBg(
-        theme.palette.primaryAction,
-        theme.palette.secondaryAction
-      )}
-  }
-
+  width: 100%;
   cursor: pointer;
+  padding: 0;
   border: none;
   background-color: transparent;
   display: inline-block;
@@ -35,6 +28,15 @@ const ButtonStyles = styled.button`
   color: #ffffff;
   position: relative;
   font-family: "Montserrat Alternates", sans-serif;
+
+  &:before,
+  span {
+    ${({ theme }) =>
+      theme.mixins.gradientBg(
+        theme.palette.primaryAction,
+        theme.palette.secondaryAction
+      )}
+  }
 
   &:before {
     content: "";
@@ -52,9 +54,9 @@ const ButtonStyles = styled.button`
   }
 
   span {
+    width: 100%;
     display: inline-block;
     padding: 18px 60px;
-    border-radius: 50em;
     position: relative;
     z-index: 2;
     will-change: transform, filter;

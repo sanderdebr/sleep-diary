@@ -11,11 +11,12 @@ export default async (req, res, app) => {
     Credentials.CLIENT_SECRET,
     Credentials.REDIRECT_URIS
   );
-
+  // TODO: add error routes
   if (req.query.error) {
     console.log("ERROR: ", req.query.error);
   }
 
+  // Get OAuth2 token
   client.getToken(req.query.code, async (error, token) => {
     if (error) {
       console.log("ERROR: ", error);
@@ -29,7 +30,19 @@ export default async (req, res, app) => {
     );
     client.credentials = JWT.verify(jwt, Credentials.JWT_SECRET);
 
-    console.log("Got token: ", client.credentials);
+    // Check if user exists
+    const people = google.people({
+      version: "v1",
+      auth: client,
+    });
+    const response = await people.people.get({
+      resourceName: "people/me",
+      personFields: "emailAddresses,names,organizations,memberships",
+    });
+
+    const email = response.data.emailAddresses;
+
+    console.log("EMAIL: ", email);
 
     const authToken = JWT.sign(
       { user: "berend", email: "email" },

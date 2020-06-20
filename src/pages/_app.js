@@ -9,10 +9,15 @@ import App from "next/app";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "~/src/common/styles/global";
 import theme from "~/src/common/styles/theme";
+import loadFonts from "~/src/common/fonts";
 
 import Wrapper from "~/src/components/Wrapper";
 
 export default class MyApp extends App {
+  componentDidMount() {
+    loadFonts();
+  }
+
   render() {
     const { Component, pageProps } = this.props;
     return (

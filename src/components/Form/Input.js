@@ -31,7 +31,7 @@ function Input({ placeholder = "E-mail address", type = "text" }) {
 
 const InputEffect = styled.div`
   width: 100%;
-  margin: 2rem 0;
+  margin: 1.5rem 0 2.5rem 0;
   position: relative;
 `;
 

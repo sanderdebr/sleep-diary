@@ -3,19 +3,16 @@ import Box from "~/src/components/Box";
 import Logo from "~/src/components/Logo";
 import { H2 } from "~/src/components/Text";
 
-import privacyText from "~/src/common/snippets/privacy";
-
-function Privacy() {
+function Page() {
   return (
     <>
-      <Head title="Privacy | SleepDiary" />
+      <Head title="Home | SleepDiary" />
       <Box>
         <Logo />
-        <H2>Privacy</H2>
-        {privacyText()}
+        <H2>Succesfully signed in</H2>
       </Box>
     </>
   );
 }
 
-export default Privacy;
+export default Page;

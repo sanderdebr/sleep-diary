@@ -48,15 +48,6 @@ function Head(props) {
       <meta property="og:image" content={props.ogImage || defaultOGImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta
-        name="google-signin-client_id"
-        content="227107832731-2j9hcmsiq001cmhfdslcfbid61cg78s2.apps.googleusercontent.com"
-      ></meta>
-      <script
-        src="https://apis.google.com/js/platform.js?onload=renderButton"
-        async
-        defer
-      ></script>
     </NextHead>
   );
 }

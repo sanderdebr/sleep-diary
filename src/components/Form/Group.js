@@ -10,7 +10,7 @@ function FormGroup({ text = "OR", children }) {
 }
 
 const GroupStyles = styled.form`
-  margin: 3rem 0;
+  margin-top: 3rem;
 `;
 
 const Title = styled.div`
@@ -20,7 +20,7 @@ const Title = styled.div`
   justify-content: center;
   color: ${({ theme }) => theme.palette.secondary};
   position: relative;
-  margin: 2rem 0;
+  margin: 2rem 0 1.5rem 0;
 
   &:before,
   &:after {
