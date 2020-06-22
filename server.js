@@ -21,7 +21,7 @@ app.prepare().then(() => {
     return await Routes.signIn(req, res, app);
   });
 
-  server.get("/sign-in-callback", async (req, res) => {
+  server.get("/auth/sign-in-callback", async (req, res) => {
     return await Routes.signInCallback(req, res, app);
   });
 

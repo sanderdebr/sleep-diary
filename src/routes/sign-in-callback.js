@@ -13,15 +13,15 @@ export default async (req, res, app) => {
     Credentials.CLIENT_SECRET,
     Credentials.REDIRECT_URIS
   );
-  // TODO: add error routes
+
   if (req.query.error) {
-    console.log("ERROR: ", req.query.error);
+    return res.redirect("auth/sign-in-error");
   }
 
   // Get OAuth2 token
   client.getToken(req.query.code, async (error, token) => {
     if (error) {
-      console.log("ERROR: ", error);
+      return res.redirect("auth/sign-in-error");
     }
 
     const jwt = JWT.sign(token, Credentials.JWT_SECRET);
@@ -44,15 +44,47 @@ export default async (req, res, app) => {
 
     const email = response.data.emailAddresses[0].value;
     const name = response.data.names[0].displayName;
-    const password = BCrypt.getSaltSync(10);
+    const password = BCrypt.genSaltSync(10);
+
+    console.log("TEST");
 
     let user = await Database.getUserByEmail({ email });
 
+    if (!user) {
+      const salt = BCrypt.genSaltSync(10);
+      const hash = BCrypt.hashSync(password, salt);
+      // const double = BCrypt.hashSync(hash, salt);
+      // const triple = BCrypt.hashSync(double, process.env.PASSWORD_SECRET);
+
+      //TODO: check JWT hash
+      user = await Database.createUser({
+        email,
+        password: hash,
+        salt,
+        data: {
+          name,
+          verified: true,
+        },
+      });
+    }
+
+    if (user.error) {
+      return app.render(req, res, "/auth/sign-in-error", {
+        jwt: null,
+        viewer: null,
+      });
+    }
+
     const authToken = JWT.sign(
-      { user: "berend", email: "email" },
+      { user: user.id, email: user.email },
       Credentials.JWT_SECRET
     );
 
-    return app.render(req, res, "/sign-in-callback", { jwt: authToken });
+    console.log("SUCCES LOGGING IN: ", email, name, user);
+
+    return app.render(req, res, "/auth/sign-in-callback", {
+      jwt: authToken,
+      viewer: user,
+    });
   });
 };

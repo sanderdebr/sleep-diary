@@ -3,7 +3,7 @@ export const isEmpty = (string) => {
 };
 
 export const getToken = (req) => {
-  if (Strings.isEmpty(req.headers.cookie)) {
+  if (isEmpty(req.headers.cookie)) {
     return null;
   }
 

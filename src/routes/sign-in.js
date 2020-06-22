@@ -17,7 +17,6 @@ export default async (req, res, app) => {
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/user.organization.read",
     ],
     prompt: "consent",
   });

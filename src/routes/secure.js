@@ -7,5 +7,5 @@ export default async (req, res, app) => {
     return app.render(req, res, "/sign-in-error", { viewer: null });
   }
 
-  return app.render(req, res, "/secure", { viewer });
+  return app.render(req, res, "/dashboard/secure", { viewer });
 };
