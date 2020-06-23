@@ -10,7 +10,7 @@ module.exports = {
     client: "sqlite3",
     useNullAsDefault: true,
     connection: {
-      filename: "./sleepdiary.sqlite",
+      filename: "./sleepdiary.db",
     },
   },
 };
