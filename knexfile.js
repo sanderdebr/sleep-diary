@@ -6,5 +6,11 @@ module.exports = {
       filename: "./sleepdiary.sqlite",
     },
   },
-  production: {},
+  production: {
+    client: "sqlite3",
+    useNullAsDefault: true,
+    connection: {
+      filename: "./sleepdiary.sqlite",
+    },
+  },
 };
