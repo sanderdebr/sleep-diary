@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
 
     html, body {
         height: 100%;
-        font-family: 'Montserrat Alternates', sans-serif;
+        font-family: 'Montserrat', sans-serif;
         margin: 0;
         color: ${({ theme }) => theme.palette.primary};
         -webkit-font-smoothing: antialiased;

@@ -33,7 +33,7 @@ const GoogleButton = styled.div`
   font-size: 16px;
   line-height: 1.5em;
   letter-spacing: 0.22px;
-  color: rgba(0, 0, 0, 0.54);
+  color: ${({ theme }) => theme.palette.primary} 
   cursor: pointer;
   transition: all 100ms ease;
 

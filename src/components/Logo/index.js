@@ -4,13 +4,17 @@ import styled from "styled-components";
 import { H3 } from "~/src/components/Text";
 import Badge from "./Badge";
 
+import { useAppContext } from "~/src/state/hooks";
+
 function Logo() {
+  const { appName } = useAppContext();
+
   return (
     <Link href="/">
       <a>
         <LogoWrapper>
           <Badge></Badge>
-          <H3>SleepDiary</H3>
+          <H3>{appName}</H3>
         </LogoWrapper>
       </a>
     </Link>
@@ -24,13 +28,8 @@ const LogoWrapper = styled.div`
 
   h3 {
     margin-left: 2.5rem;
-    ${({ theme }) =>
-      theme.mixins.gradientBg(
-        theme.palette.primaryAction,
-        theme.palette.secondaryAction
-      )}
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: ${({ theme }) => theme.palette.secondaryAction};
+    font-weight: bold;
   }
 `;
 

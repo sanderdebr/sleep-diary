@@ -1,10 +1,10 @@
 const palette = {
-  primary: "#52A0FD",
+  primary: "#1d1a4d",
   secondary: "#908fa8",
-  primaryAction: "#52A0FD",
-  secondaryAction: "#00e2fa",
-  tertiaryAction: "#44ea76",
-  bgColor: "#f9f9f9",
+  primaryAction: "#0054ff",
+  secondaryAction: "#ff384f",
+  tertiaryAction: "#7847f3",
+  bgColor: "#f6f5fa",
 };
 
 const media = {

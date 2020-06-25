@@ -1,6 +1,5 @@
 import React from "react";
 import whyDidYouRender from "@welldone-software/why-did-you-render";
-
 if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   whyDidYouRender(React);
 }
@@ -11,7 +10,7 @@ import { GlobalStyles } from "~/src/common/styles/global";
 import theme from "~/src/common/styles/theme";
 import loadFonts from "~/src/common/fonts";
 
-import Wrapper from "~/src/components/Wrapper";
+import AppWrapper from "~/src/components/AppWrapper";
 
 export default class MyApp extends App {
   componentDidMount() {
@@ -23,9 +22,9 @@ export default class MyApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Wrapper>
+        <AppWrapper>
           <Component {...pageProps} />
-        </Wrapper>
+        </AppWrapper>
       </ThemeProvider>
     );
   }

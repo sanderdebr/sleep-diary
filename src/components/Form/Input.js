@@ -43,7 +43,7 @@ const InputStyled = styled.input`
   padding: 10px 0;
   border-bottom: 1px solid ${({ theme }) => theme.palette.secondary};
   background-color: transparent;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   & ~ .focus-border {
     position: absolute;

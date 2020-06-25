@@ -1,17 +1,26 @@
+import { createContext, useReducer } from "react";
 import { withRouter } from "next/router";
 import styled from "styled-components";
+
+import { initialState, reducer } from "~/src/state";
 
 import Container from "./Container";
 import Wave from "./Wave";
 
+export const AppContext = createContext();
+
 function Wrapper({ children, router }) {
   const { pathname } = router;
 
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <WrapperStyles path={pathname}>
-      <Container>{children}</Container>
-      <Wave />
-    </WrapperStyles>
+    <AppContext.Provider value={{ ...state, dispatch }}>
+      <WrapperStyles path={pathname}>
+        <Container>{children}</Container>
+        <Wave />
+      </WrapperStyles>
+    </AppContext.Provider>
   );
 }
 

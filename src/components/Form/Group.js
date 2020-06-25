@@ -19,6 +19,7 @@ const Title = styled.div`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.palette.secondary};
+  opacity: 0.5;
   position: relative;
   margin: 2rem 0 1.5rem 0;
 
@@ -29,6 +30,7 @@ const Title = styled.div`
     content: "";
     height: 1px;
     background-color: ${({ theme }) => theme.palette.secondary};
+    opacity: 0.5;
   }
 
   &:before {

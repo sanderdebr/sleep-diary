@@ -27,15 +27,11 @@ const ButtonStyles = styled.button`
   letter-spacing: 0.03em;
   color: #ffffff;
   position: relative;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   &:before,
   span {
-    ${({ theme }) =>
-      theme.mixins.gradientBg(
-        theme.palette.primaryAction,
-        theme.palette.secondaryAction
-      )}
+    background-color: ${({ theme }) => theme.palette.primaryAction};
   }
 
   &:before {
