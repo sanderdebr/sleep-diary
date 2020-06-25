@@ -3,6 +3,8 @@
 Using:
 
 * NextJS
+* React useReducer and useContext for state management
+* Image webp format and custom Lazy Loader
 * Express
 * GoogleAPIs
 * JWT
