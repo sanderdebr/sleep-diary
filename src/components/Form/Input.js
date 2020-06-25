@@ -11,7 +11,7 @@ function Input({ placeholder = "E-mail address", type = "text" }) {
       touched = true;
       ref.current.classList.add("blurred");
     }
-    if (value === "") ref.current.classList.remove("blurred");
+    if (value == "") ref.current.classList.remove("blurred");
     setInput(value);
   };
 
@@ -42,8 +42,10 @@ const InputStyled = styled.input`
   border: 0;
   padding: 10px 0;
   border-bottom: 1px solid ${({ theme }) => theme.palette.secondary};
+  color: ${({ theme }) => theme.palette.primary};
   background-color: transparent;
   font-family: "Montserrat", sans-serif;
+  font-size: ${({ theme }) => theme.fontSizes.p}px;
 
   & ~ .focus-border {
     position: absolute;
@@ -70,14 +72,14 @@ const InputStyled = styled.input`
   }
   &:focus ~ label {
     top: -16px;
-    font-size: 12px;
     color: ${({ theme }) => theme.palette.primaryAction};
     transition: 0.3s;
+    font-size: 12px;
   }
   &.blurred ~ label {
     top: -16px;
-    font-size: 12px;
     color: ${({ theme }) => theme.palette.primaryAction};
+    font-size: 12px;
   }
 `;
 

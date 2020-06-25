@@ -20,7 +20,7 @@ const NoteWrapper = styled.footer`
   text-align: center;
   width: 100%;
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.palette.secondary};
+  color: ${({ theme }) => theme.palette.tertiaryAction};
 `;
 
 export default Note;

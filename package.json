@@ -35,5 +35,8 @@
     "styled-components": "^5.1.1",
     "universal-cookie": "^4.0.3",
     "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "nord": "^0.2.1"
   }
 }

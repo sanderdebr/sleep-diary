@@ -1,16 +1,20 @@
 const palette = {
-  primary: "#1d1a4d",
-  secondary: "#908fa8",
-  primaryAction: "#0054ff",
-  secondaryAction: "#ff384f",
-  tertiaryAction: "#7847f3",
-  bgColor: "#f6f5fa",
+  primary: "#5E81AC",
+  secondary: "#D8DEE9",
+  primaryAction: "#8FBCBB",
+  secondaryAction: "#88C0D0",
+  tertiaryAction: "#81A1C1",
+  bgColor: "#ECEFF4",
 };
 
 const media = {
   mobile: 768,
   tablet: 1024,
   desktop: 1280,
+};
+
+const fontSizes = {
+  p: 16,
 };
 
 const spacing = {
@@ -29,6 +33,7 @@ const mixins = {
 const theme = {
   palette,
   media,
+  fontSizes,
   spacing,
   mixins,
 };
