@@ -6,7 +6,8 @@
     "dev": "nodemon .",
     "build": "next build",
     "start": "NODE_ENV=production node .",
-    "knex": "knex"
+    "knex": "knex",
+    "seed-db": "node ./scripts seed-db"
   },
   "keywords": [],
   "author": "Sander de Bruijn",
