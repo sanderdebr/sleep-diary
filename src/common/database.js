@@ -45,15 +45,14 @@ export const getUserByEmail = async ({ email }) => {
   return await runQuery({
     label: "GET_USER_BY_EMAIL",
     queryFn: async () => {
-      const query = await db("users").debug().where({ email: email });
+      const query = await db("users").debug().where("email", email);
 
       if (!query || query.error) {
         return null;
       }
 
-      //TODO: return first result
-      if (query.id) {
-        return query;
+      if (query[0].id) {
+        return query[0];
       }
 
       return null;
@@ -67,15 +66,15 @@ export const getUserByEmail = async ({ email }) => {
   });
 };
 
-// TODO: only email s coming in
 export const createUser = async ({ email, password, salt, data = {} }) => {
-  console.log("EMAIL: ", email);
   return await runQuery({
     label: "CREATE_USER",
     queryFn: async () => {
       const query = await db("users")
         .debug()
-        .insert([{ email }, { password }, { salt }, { data }]);
+        .insert([{ email, password, salt, data }]);
+
+      console.log("RESULT: ", query);
 
       const index = query ? query.pop() : null;
       return index;

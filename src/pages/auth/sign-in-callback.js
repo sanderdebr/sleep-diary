@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
+import { Link } from "next/link";
 
 import * as Constants from "~/src/common/constants";
 
@@ -23,6 +24,9 @@ function Page(props) {
       <Box>
         <Logo />
         <H2>Succesfully signed in</H2>
+        <Link href="../dashboard">
+          <a>Go to dashboard</a>
+        </Link>
       </Box>
     </>
   );

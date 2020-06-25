@@ -46,8 +46,6 @@ export default async (req, res, app) => {
     const name = response.data.names[0].displayName;
     const password = BCrypt.genSaltSync(10);
 
-    console.log("TEST");
-
     let user = await Database.getUserByEmail({ email });
 
     if (!user) {
@@ -69,7 +67,8 @@ export default async (req, res, app) => {
     }
 
     if (user.error) {
-      return app.render(req, res, "/auth/sign-in-error", {
+      console.log("ERROR IN CALLBACK", user.error);
+      return app.render(req, res, "/sign-in-error", {
         jwt: null,
         viewer: null,
       });
@@ -82,7 +81,7 @@ export default async (req, res, app) => {
 
     console.log("SUCCES LOGGING IN: ", email, name, user);
 
-    return app.render(req, res, "/auth/sign-in-callback", {
+    return app.render(req, res, "/sign-in-success", {
       jwt: authToken,
       viewer: user,
     });
