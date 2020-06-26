@@ -15,13 +15,13 @@ export default async (req, res, app) => {
   );
 
   if (req.query.error) {
-    return res.redirect("auth/sign-in-error");
+    return res.redirect("/auth/sign-in-error");
   }
 
   // Get OAuth2 token
   client.getToken(req.query.code, async (error, token) => {
     if (error) {
-      return res.redirect("auth/sign-in-error");
+      return res.redirect("/auth/sign-in-error");
     }
 
     const jwt = JWT.sign(token, Credentials.JWT_SECRET);
@@ -68,7 +68,7 @@ export default async (req, res, app) => {
 
     if (user.error) {
       console.log("ERROR IN CALLBACK", user.error);
-      return app.render(req, res, "/sign-in-error", {
+      return app.render(req, res, "/auth/sign-in-error", {
         jwt: null,
         viewer: null,
       });
@@ -79,9 +79,7 @@ export default async (req, res, app) => {
       Credentials.JWT_SECRET
     );
 
-    console.log("SUCCES LOGGING IN: ", email, name, user);
-
-    return app.render(req, res, "/sign-in-success", {
+    return app.render(req, res, "/auth/sign-in-callback", {
       jwt: authToken,
       viewer: user,
     });

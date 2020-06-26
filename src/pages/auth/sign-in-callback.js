@@ -1,32 +1,30 @@
-import { useEffect } from "react";
+import Head from "next/head";
 import Cookies from "universal-cookie";
-import { Link } from "next/link";
 
+import { useEffect } from "react";
 import * as Constants from "~/src/common/constants";
 
-import Head from "~/src/components/Head";
 import Box from "~/src/components/Box";
 import Logo from "~/src/components/Logo";
 import { H2 } from "~/src/components/Text";
 
+const cookies = new Cookies();
+
 function Page(props) {
   useEffect(() => {
-    const cookies = new Cookies();
-    console.log("jwt: ", props.jwt);
     if (props.jwt) {
-      cookies.set(Constants.session.key, props.jwt);
+      cookies.set(Constants.session.key, props.jwt, { path: "/" });
       return;
     }
   }, []);
+
   return (
     <>
       <Head title="Home | SleepDiary" />
       <Box>
         <Logo />
         <H2>Succesfully signed in</H2>
-        <Link href="../dashboard">
-          <a>Go to dashboard</a>
-        </Link>
+        <a href="/dashboard">View an authenticated page.</a>
       </Box>
     </>
   );
@@ -37,6 +35,7 @@ Page.getInitialProps = async (ctx) => {
     error: ctx.err,
     viewer: ctx.query.viewer,
     jwt: ctx.query.jwt,
+    cookie: ctx.query.cookie,
   };
 };
 

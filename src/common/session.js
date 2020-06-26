@@ -1,22 +1,28 @@
-import * as Credentials from "~/src/common/credentials";
-import * as Utilities from "~/src/common/utilities";
+import * as Credentials from "./credentials";
+import * as Utilities from "./utilities";
+import * as Database from "./database";
 
 import JWT from "jsonwebtoken";
 
-export const getViewer = async (req, exisitingToken = undefined) => {
+export const getViewer = async (req, existingToken = undefined) => {
   let viewer = null;
 
   try {
-    // Retrieve JWT token from cookies
-
-    let token = exisitingToken;
+    let token = existingToken;
     if (!token) {
-      token = Utilities.getToken(req);
+      try {
+        token = Utilities.getToken(req);
+      } catch (err) {
+        return err;
+      }
     }
+
+    //TODO: JWT error handling
+
     let decode = JWT.verify(token, Credentials.JWT_SECRET);
-    // viewer = await getUserByEmail({ email: decode.email });
+    viewer = await Database.getUserByEmail({ email: decode.email });
   } catch (err) {
-    console.log("error: ", err);
+    return err;
   }
 
   if (!viewer || viewer.error) {

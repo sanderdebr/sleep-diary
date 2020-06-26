@@ -6,7 +6,7 @@ import JWT from "jsonwebtoken";
 
 export const RequireAuth = async (req, res, next) => {
   if (Utilities.isEmpty(req.headers.cookie)) {
-    return res.redirect("/sign-in-error");
+    return res.redirect("/auth/sign-in-error");
   }
 
   const token = req.headers.cookie.replace(
@@ -14,16 +14,20 @@ export const RequireAuth = async (req, res, next) => {
     "$1"
   );
 
+  if (!token) {
+    return res.redirect("/auth/sign-in-error");
+  }
+
   try {
     let decoded = JWT.verify(token, Credentials.JWT_SECRET);
     const user = await Database.getUserByEmail({ email: decoded.email });
 
     if (!user || user.error) {
-      return res.redirect("/sign-in-error");
+      return res.redirect("/auth/sign-in-error");
     }
   } catch (err) {
-    console.warn(err);
-    return res.redirect("/sign-in-error");
+    console.log(err);
+    return res.redirect("/auth/sign-in-error");
   }
 
   next();

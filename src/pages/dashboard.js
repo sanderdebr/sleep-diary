@@ -3,7 +3,8 @@ import Box from "~/src/components/Box";
 import Logo from "~/src/components/Logo";
 import { H2 } from "~/src/components/Text";
 
-function Page() {
+function Page(props) {
+  console.log(props);
   return (
     <>
       <Head title="Home | SleepDiary" />
@@ -14,5 +15,13 @@ function Page() {
     </>
   );
 }
+
+Page.getInitialProps = async (ctx) => {
+  return {
+    error: ctx.err,
+    viewer: ctx.query.viewer,
+    data: ctx.query.data,
+  };
+};
 
 export default Page;

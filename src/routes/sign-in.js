@@ -1,5 +1,5 @@
 import * as Credentials from "~/src/common/credentials";
-import * as Data from "~/src/common/session";
+import * as Session from "~/src/common/session";
 
 const google = require("googleapis").google;
 const OAuth2 = google.auth.OAuth2;
@@ -21,7 +21,7 @@ export default async (req, res, app) => {
     prompt: "consent",
   });
 
-  const { viewer } = await Data.getViewer(req);
+  const { viewer } = await Session.getViewer(req);
 
   console.log("VIEWER: ", viewer);
 
@@ -30,5 +30,5 @@ export default async (req, res, app) => {
   }
 
   // Already signed in
-  app.render(req, res, "/dashboard/", { googleURL, viewer });
+  app.render(req, res, "/dashboard", { googleURL, viewer });
 };
