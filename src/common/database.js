@@ -22,7 +22,7 @@ export const getUserByEmail = async ({ email }) => {
         return null;
       }
 
-      if (query[0].id) {
+      if (query[0]) {
         return query[0];
       }
 
