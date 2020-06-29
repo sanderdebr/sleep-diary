@@ -1,27 +1,33 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
-function Input({ placeholder = "E-mail address", type = "text" }) {
+function Input({ placeholder, auth, setAuth, ...props }) {
   let touched = false;
   const ref = useRef();
-  const [input, setInput] = useState("");
 
-  const handleChange = ({ target: { value } }) => {
+  const handleStyling = () => {
     if (!touched) {
       touched = true;
       ref.current.classList.add("blurred");
     }
-    if (value == "") ref.current.classList.remove("blurred");
-    setInput(value);
+    if (ref.current.value == "") ref.current.classList.remove("blurred");
   };
+
+  const handleChange = ({ target }) => {
+    handleStyling();
+    const { name, value } = target;
+    setAuth({ ...auth, [name]: value });
+  };
+
+  console.log(auth);
 
   return (
     <InputEffect>
       <InputStyled
         ref={ref}
-        type={type}
+        value={auth[props.name]}
         onChange={handleChange}
-        value={input}
+        {...props}
       />
       <label>{placeholder}</label>
       <FocusBorder></FocusBorder>
