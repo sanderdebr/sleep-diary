@@ -19,8 +19,6 @@ function Input({ placeholder, auth, setAuth, ...props }) {
     setAuth({ ...auth, [name]: value });
   };
 
-  console.log(auth);
-
   return (
     <InputEffect>
       <InputStyled

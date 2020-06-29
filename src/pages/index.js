@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import Head from "~/src/components/Head";
 
+import localSignIn from "~/src/routes/api/sign-in";
+
 import { Home, Left, Right } from "~/src/components/HomeWrapper";
 import Logo from "~/src/components/Logo";
 import { H2 } from "~/src/components/Text";
@@ -19,7 +21,7 @@ function Page({ googleURL = null }) {
           <Logo />
           <H2>Please login to your account.</H2>
           <GoogleSignInBtn url={googleURL} />
-          <FormGroup>
+          <FormGroup onSubmit={() => localSignIn(auth)}>
             <Input
               placeholder="E-mail address"
               type="text"
@@ -34,7 +36,7 @@ function Page({ googleURL = null }) {
               auth={auth}
               setAuth={setAuth}
             />
-            <Button />
+            <Button text="Sign in or create account" />
           </FormGroup>
         </Left>
         <Right />

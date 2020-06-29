@@ -66,8 +66,6 @@ export default async (req, res, app) => {
       });
     }
 
-    console.log("USER: ", user);
-
     if (user.error) {
       console.log("ERROR IN CALLBACK", user.error);
       return app.render(req, res, "/auth/sign-in-error", {

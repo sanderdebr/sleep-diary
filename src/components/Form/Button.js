@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-function Button({ text = "Sign in or create account" }) {
+function Button({ text, props }) {
   return (
     <Wrapper>
-      <ButtonStyles>
+      <ButtonStyles {...props}>
         <span>{text}</span>
       </ButtonStyles>
     </Wrapper>

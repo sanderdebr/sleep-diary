@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-function FormGroup({ text = "OR", children }) {
+function FormGroup({ text = "OR", children, onSubmit }) {
   return (
-    <GroupStyles>
+    <GroupStyles onSubmit={onSubmit}>
       <Title>{text}</Title>
       {children}
     </GroupStyles>

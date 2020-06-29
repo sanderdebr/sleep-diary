@@ -28,6 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
     "next": "^9.4.4",
+    "node-pre-gyp": "^0.15.0",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -35,8 +36,5 @@
     "styled-components": "^5.1.1",
     "universal-cookie": "^4.0.3",
     "uuid": "^8.1.0"
-  },
-  "devDependencies": {
-    "nord": "^0.2.1"
   }
 }

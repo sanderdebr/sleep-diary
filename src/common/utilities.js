@@ -12,3 +12,12 @@ export const getToken = (req) => {
     "$1"
   );
 };
+
+export const parseAuthHeader = (value) => {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const matches = value.match(/(\S+)\s+(\S+)/);
+  return matches && { scheme: matches[1], value: matches[2] };
+};
