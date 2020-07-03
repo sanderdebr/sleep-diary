@@ -50,7 +50,7 @@ export default async (req, res, app) => {
 
     if (!user) {
       const salt = BCrypt.genSaltSync(10);
-      const hash = BCrypt.hashSync(req.body.password, salt);
+      const hash = BCrypt.hashSync(password, salt);
 
       //TODO: check JWT hash
       user = await Database.createUser({
