@@ -2,7 +2,7 @@ import * as Utilities from "~/src/common/utilities";
 import * as Database from "~/src/common/database";
 import * as Credentials from "~/src/common/credentials";
 
-import Bcrypt from "bcrypt";
+import BCrypt from "bcrypt";
 import JWT from "jsonwebtoken";
 
 export default async (req, res) => {
@@ -20,15 +20,14 @@ export default async (req, res) => {
 
   if (!user) {
     const salt = BCrypt.genSaltSync(10);
-    const hash = BCrypt.hashSync(password, salt);
+    const hash = BCrypt.hashSync(req.body.password, salt);
 
     user = await Database.createUser({
-      email,
+      email: req.body.email,
       password: hash,
       salt,
       data: {
-        name,
-        verified: true,
+        verified: false,
       },
     });
   } else {
@@ -39,12 +38,9 @@ export default async (req, res) => {
     }
 
     //TODO add more Bcrypt
-    const phaseOne = BCrypt.hashSync(req.body.password, user.salt);
-    const phaseTwo = Bcrypt.hashSync(phaseOne, user.salt);
-    const phaseThree = Bcrypt.hasSync(phaseTwo, process.env.PASSWORD_SECRET);
-    console.log("JWT PASS SECRET: ", process.env.PASSWORD_SECRET);
+    const generatePass = BCrypt.hashSync(req.body.password, user.salt);
 
-    if (phaseThree !== user.password) {
+    if (generatePass !== user.password) {
       return res
         .status(500)
         .send({ error: "We would not authenticate you (2). " });

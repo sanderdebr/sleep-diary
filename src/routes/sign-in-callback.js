@@ -44,15 +44,13 @@ export default async (req, res, app) => {
 
     const email = response.data.emailAddresses[0].value;
     const name = response.data.names[0].displayName;
-    const password = BCrypt.genSaltSync(10);
+    // const password = BCrypt.genSaltSync(10);
 
     let user = await Database.getUserByEmail({ email });
 
     if (!user) {
       const salt = BCrypt.genSaltSync(10);
-      const hash = BCrypt.hashSync(password, salt);
-      // const double = BCrypt.hashSync(hash, salt);
-      // const triple = BCrypt.hashSync(double, process.env.PASSWORD_SECRET);
+      const hash = BCrypt.hashSync(req.body.password, salt);
 
       //TODO: check JWT hash
       user = await Database.createUser({

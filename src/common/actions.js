@@ -1,6 +1,6 @@
 import Cookies from "universal-cookie";
 
-import * as COnstants from "~/common/constants";
+import * as Constants from "~/src/common/constants";
 
 const cookies = new Cookies();
 
@@ -24,7 +24,7 @@ const getHeaders = () => {
   return REQUEST_HEADERS;
 };
 
-export const onLocalSignIn = async (e, props, auth) => {
+export const localSignIn = async (auth) => {
   const options = {
     method: "POST",
     headers: getHeaders(),
@@ -34,6 +34,8 @@ export const onLocalSignIn = async (e, props, auth) => {
 
   const response = await fetch(`${SERVER_PATH}/api/sign-in`, options);
   const json = await response.json();
+
+  console.log("RESPONSE", json);
 
   if (json.error) {
     console.log(json.error);

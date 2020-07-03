@@ -3,6 +3,7 @@ import * as Routes from "~/src/routes";
 
 import express from "express";
 import next from "next";
+import bodyParser from "body-parser";
 
 const dev = process.env.NODE_ENV !== "production";
 const port = process.env.PORT || 8000;
@@ -13,6 +14,8 @@ app.prepare().then(() => {
   const server = express();
 
   server.use("/public", express.static("public"));
+  server.use(bodyParser.json());
+  server.use(bodyParser.urlencoded({ extended: false }));
 
   server.post("/api/sign-in", async (req, res) => {
     return await Routes.api.signIn(req, res);
