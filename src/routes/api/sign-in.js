@@ -40,6 +40,8 @@ export default async (req, res) => {
     //TODO add more Bcrypt
     const generatePass = BCrypt.hashSync(req.body.password, user.salt);
 
+    console.log(req.body.password, user);
+
     if (generatePass !== user.password) {
       return res
         .status(500)
