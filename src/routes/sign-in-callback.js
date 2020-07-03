@@ -44,7 +44,7 @@ export default async (req, res, app) => {
 
     const email = response.data.emailAddresses[0].value;
     const name = response.data.names[0].displayName;
-    // const password = BCrypt.genSaltSync(10);
+    const password = BCrypt.genSaltSync(10);
 
     let user = await Database.getUserByEmail({ email });
 
