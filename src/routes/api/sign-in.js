@@ -38,11 +38,9 @@ export default async (req, res) => {
     }
 
     //TODO add more Bcrypt
-    const generatePass = BCrypt.hashSync(req.body.password, user.salt);
+    const hash = BCrypt.hashSync(req.body.password, user.salt);
 
-    console.log(req.body.password, user);
-
-    if (generatePass !== user.password) {
+    if (!BCrypt.compareSync(req.body.password, hash)) {
       return res
         .status(500)
         .send({ error: "We would not authenticate you (2). " });
