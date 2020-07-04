@@ -15,7 +15,7 @@ console.log(`RUNNING: seed-database.js NODE_ENV=${environment}`);
 // SCRIPTS
 // --------------------------
 
-const createUserTable = db.schema.debug().createTable("users", (table) => {
+const createUserTable = db.schema.createTable("users", (table) => {
   table.increments("id");
   table.timestamp("created_at").defaultTo(db.fn.now());
   table.timestamp("updated_at").defaultTo(db.fn.now());

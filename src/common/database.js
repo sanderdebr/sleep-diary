@@ -16,7 +16,7 @@ export const getUserByEmail = async ({ email }) => {
   return await runQuery({
     label: "GET_USER_BY_EMAIL",
     queryFn: async () => {
-      const query = await db("users").debug().where("email", email);
+      const query = await db("users").where("email", email);
 
       if (!query || query.error) {
         return null;
@@ -41,9 +41,7 @@ export const createUser = async ({ email, password, salt, data = {} }) => {
   return await runQuery({
     label: "CREATE_USER",
     queryFn: async () => {
-      const query = await db("users")
-        .debug()
-        .insert([{ email, password, salt, data }]);
+      const query = await db("users").insert([{ email, password, salt, data }]);
 
       console.log("RESULT: ", query);
 
