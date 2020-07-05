@@ -43,8 +43,7 @@ export const createUser = async ({ email, password, salt, data = {} }) => {
     queryFn: async () => {
       const query = await db("users").insert([{ email, password, salt, data }]);
 
-      console.log("RESULT: ", query);
-
+      // Returns ID of created user
       const index = query ? query.pop() : null;
       return index;
     },

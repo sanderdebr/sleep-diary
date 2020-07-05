@@ -35,15 +35,12 @@ export const localSignIn = async (auth) => {
   const response = await fetch(`${SERVER_PATH}/api/sign-in`, options);
   const json = await response.json();
 
-  console.log("RESPONSE", json);
-
   if (json.error) {
     console.log(json.error);
     return;
   }
 
   if (json.token) {
-    console.log("JSON TOKEN FOUND", json.token);
     cookies.set(Constants.session.key, json.token, { path: "/" });
   }
 

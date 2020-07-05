@@ -39,16 +39,17 @@ export default async (req, res) => {
       return res.status(500).send({
         error: `Something went wrong with encryption: ${hashed.error}`,
       });
-    } else {
-      user = await Database.createUser({
-        email: req.body.email,
-        password: hashed.password,
-        salt: hashed.salt,
-        data: {
-          verified: false,
-        },
-      });
     }
+
+    // Returns ID of created user
+    user = await Database.createUser({
+      email: req.body.email,
+      password: hashed.password,
+      salt: hashed.salt,
+      data: {
+        verified: false,
+      },
+    });
   } else {
     if (user.error) {
       return res
@@ -77,10 +78,11 @@ export default async (req, res) => {
   }
 
   const authorization = Utilities.parseAuthHeader(req.headers.authorization);
+
   if (authorization && !Utilities.isEmpty(authorization.value)) {
     const verified = JWT.verify(authorization.value, Credentials.JWT_SECRET);
 
-    if (user.email === verified.email) {
+    if (req.body.email === verified.email) {
       return res.status(200).send({
         message: "You are already authenticated. Welcome back!",
         viewer: user,
@@ -89,7 +91,7 @@ export default async (req, res) => {
   }
 
   const token = JWT.sign(
-    { user: user.id, email: user.email },
+    { user: user, email: req.body.email },
     Credentials.JWT_SECRET
   );
 
