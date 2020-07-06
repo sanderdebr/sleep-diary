@@ -10,7 +10,7 @@ import { GlobalStyles } from "~/src/common/styles/global";
 import theme from "~/src/common/styles/theme";
 import loadFonts from "~/src/common/fonts";
 
-import AppWrapper from "~/src/components/AppWrapper";
+import AppWrapper from "~/src/components/shared/AppWrapper";
 
 export default class MyApp extends App {
   componentDidMount() {

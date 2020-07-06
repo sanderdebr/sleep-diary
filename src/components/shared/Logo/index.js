@@ -1,18 +1,18 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-import { H3 } from "~/src/components/Text";
+import { H3 } from "~/src/components/shared/Text";
 import Badge from "./Badge";
 
 import { useAppContext } from "~/src/state/hooks";
 
-function Logo() {
+function Logo({ lessMargin }) {
   const { appName } = useAppContext();
 
   return (
     <Link href="/">
       <a>
-        <LogoWrapper>
+        <LogoWrapper lessMargin={lessMargin}>
           <Badge></Badge>
           <H3>{appName}</H3>
         </LogoWrapper>
@@ -25,9 +25,10 @@ const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin: ${({ lessMargin }) => (lessMargin ? "0" : "1.75rem 0")};
 
   h3 {
-    margin-left: 2.5rem;
+    margin: 0 0 0 2.5rem;
     color: ${({ theme }) => theme.palette.secondaryAction};
     font-weight: bold;
   }

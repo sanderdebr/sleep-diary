@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import LazyImage from "~/src/components/LazyImage";
+import LazyImage from "~/src/components/home/LazyImage";
 
 function Right() {
   return (

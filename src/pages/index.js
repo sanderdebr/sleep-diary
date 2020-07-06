@@ -1,13 +1,13 @@
 import { useState } from "react";
-import Head from "~/src/components/Head";
+import Head from "~/src/components/shared/Head";
 
 import * as Actions from "~/src/common/actions";
 
-import { Home, Left, Right } from "~/src/components/HomeWrapper";
-import Logo from "~/src/components/Logo";
-import { H2 } from "~/src/components/Text";
-import GoogleSignInBtn from "~/src/components/GoogleSignInBtn";
-import { FormGroup, Input, Button } from "~/src/components/Form";
+import GoogleSignInBtn from "~/src/components/home/GoogleSignInBtn";
+import { Home, Left, Right } from "~/src/components/home/HomeWrapper";
+import Logo from "~/src/components/shared/Logo";
+import { H2 } from "~/src/components/shared/Text";
+import { FormGroup, Input, Button } from "~/src/components/shared/Form";
 
 function Page({ googleURL = null }) {
   const [auth, setAuth] = useState({ email: "", password: "" });

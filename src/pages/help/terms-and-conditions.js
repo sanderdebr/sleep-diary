@@ -1,8 +1,7 @@
-import Head from "~/src/components/Head";
-import Box from "~/src/components/Box";
-
-import Logo from "~/src/components/Logo";
-import { H2 } from "~/src/components/Text";
+import Head from "~/src/components/shared/Head";
+import Box from "~/src/components/shared/Box";
+import Logo from "~/src/components/shared/Logo";
+import { H2 } from "~/src/components/shared/Text";
 
 import conditionsText from "~/src/common/snippets/conditions";
 
