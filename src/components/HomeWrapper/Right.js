@@ -20,10 +20,14 @@ const ImgWrapper = styled.div`
   width: 100%;
   max-height: 350px;
   background-color: ${({ theme }) => theme.palette.primaryAction};
+  border-radius: 0 ${({ theme }) => theme.general.borderRadius}px
+    ${({ theme }) => theme.general.borderRadius}px 0;
 
   img {
     width: 100%;
     height: 100%;
+    border-radius: 0 ${({ theme }) => theme.general.borderRadius}px
+      ${({ theme }) => theme.general.borderRadius}px 0;
   }
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {

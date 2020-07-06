@@ -22,7 +22,6 @@ export const getViewer = async (req, existingToken = undefined) => {
     let decode = JWT.verify(token, Credentials.JWT_SECRET);
     viewer = await Database.getUserByEmail({ email: decode.email });
   } catch (err) {
-    console.log("err token", err);
     return err;
   }
 

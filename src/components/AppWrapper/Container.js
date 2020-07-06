@@ -1,12 +1,10 @@
-import { withRouter } from "next/router";
 import styled from "styled-components";
 
 import Note from "./Note";
 
-function Container({ children, router }) {
-  const { pathname } = router;
+function Container({ children, path }) {
   return (
-    <ContainerWrapper path={pathname}>
+    <ContainerWrapper path={path}>
       {children}
       <Note />
     </ContainerWrapper>
@@ -15,18 +13,21 @@ function Container({ children, router }) {
 
 const ContainerWrapper = styled.main`
   z-index: 1;
-  width: 80vw;
+  width: 85vw;
   height: 100%;
   background-color: #fff;
-  margin-top: ${({ theme }) => theme.spacing.gutter}px;
-  margin-bottom: ${({ theme }) => theme.spacing.gutter}px;
   box-shadow: ${({ theme }) => theme.mixins.boxShadow};
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: ${({ theme }) => theme.general.borderRadius}px;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
-    height: ${({ path }) => (path === "/" ? "80vw" : "auto")};
-    max-width: 1200px;
-    max-height: ${({ path }) => (path === "/" ? "600px" : "auto")};
+    max-width: ${({ path }) =>
+      path.indexOf("dashboard") !== -1 ? "85vw" : "1200px"};
+    max-height: ${({ path }) =>
+      path.indexOf("help") !== -1 ? "auto" : "600px"};
+    max-height: ${({ path }) => path.indexOf("dashboard") !== -1 && "85vh"};
   }
 `;
 
-export default withRouter(Container);
+export default Container;

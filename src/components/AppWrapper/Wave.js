@@ -3,7 +3,7 @@ import styled, { useTheme } from "styled-components";
 function Wave() {
   const theme = useTheme();
   return (
-    <WaveWrapper>
+    <WaveWrapper theme={theme}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#E5E9F0"
@@ -16,9 +16,15 @@ function Wave() {
 
 const WaveWrapper = styled.div`
   width: 100%;
-  height: auto;
+  height: 100%;
+  background-color: ${({ theme }) => theme.palette.bgColor};
   position: fixed;
   bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  svg {
+    width: 100%;
+  }
 `;
 
 export default Wave;

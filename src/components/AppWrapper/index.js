@@ -17,7 +17,7 @@ function Wrapper({ children, router }) {
   return (
     <AppContext.Provider value={{ ...state, dispatch }}>
       <WrapperStyles path={pathname}>
-        <Container>{children}</Container>
+        <Container path={pathname}>{children}</Container>
         <Wave />
       </WrapperStyles>
     </AppContext.Provider>
@@ -26,11 +26,10 @@ function Wrapper({ children, router }) {
 
 const WrapperStyles = styled.div`
   width: 100%;
-  height: 100%;
+  height: ${({ path }) => (path.indexOf("help") !== -1 ? "auto" : "100%")};
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.palette.bgColor};
 `;
 
 export default withRouter(Wrapper);

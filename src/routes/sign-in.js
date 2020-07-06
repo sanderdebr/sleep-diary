@@ -23,12 +23,10 @@ export default async (req, res, app) => {
 
   const { viewer } = await Session.getViewer(req);
 
-  console.log("VIEWER: ", viewer);
-
   if (!viewer || viewer.error) {
     return app.render(req, res, "/", { googleURL, viewer: null });
   }
 
   // Already signed in
-  app.render(req, res, "/dashboard", { googleURL, viewer });
+  app.render(req, res, "/dashboard", { viewer });
 };

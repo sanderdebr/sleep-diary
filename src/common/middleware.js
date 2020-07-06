@@ -23,7 +23,7 @@ export const RequireAuth = async (req, res, next) => {
     const user = await Database.getUserByEmail({ email: decoded.email });
 
     if (!user || user.error) {
-      // return res.redirect("/auth/sign-in-error");
+      return res.redirect("/auth/sign-in-error");
     }
   } catch (err) {
     return res.redirect("/auth/sign-in-error");

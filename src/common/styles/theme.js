@@ -1,3 +1,7 @@
+const general = {
+  borderRadius: 20,
+};
+
 const palette = {
   primary: "#5E81AC",
   secondary: "#D8DEE9",
@@ -31,6 +35,7 @@ const mixins = {
 };
 
 const theme = {
+  general,
   palette,
   media,
   fontSizes,

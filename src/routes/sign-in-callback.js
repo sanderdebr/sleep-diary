@@ -78,7 +78,7 @@ export default async (req, res, app) => {
       Credentials.JWT_SECRET
     );
 
-    return app.render(req, res, "/auth/sign-in-callback", {
+    return app.render(req, res, "/dashboard", {
       jwt: authToken,
       viewer: user,
     });
