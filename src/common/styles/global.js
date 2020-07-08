@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     html, body {
-        height: 100%;
+        height: 100vh;
         font-family: 'Montserrat', sans-serif;
         margin: 0;
         color: ${({ theme }) => theme.palette.primary};
@@ -23,10 +23,7 @@ export const GlobalStyles = createGlobalStyle`
         text-decoration: none;
         cursor: pointer;
         color: ${({ theme }) => theme.palette.primary};
-        transition: 250ms ease;
-        &:hover {
-            color: ${({ theme }) => theme.palette.primaryAction}
-        }
+        transition: all 250ms ease;
     }
     
     :focus {

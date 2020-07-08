@@ -21,7 +21,7 @@ function Page(props) {
   return (
     <>
       <Head title="Home | SleepDiary" />
-      <Box lessMargin>
+      <Box noPadding>
         <Sidebar />
       </Box>
     </>

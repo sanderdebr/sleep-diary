@@ -1,61 +1,61 @@
+import { useState } from "react";
+
 import styled from "styled-components";
-import Link from "next/link";
+import { withRouter } from "next/router";
 
 import { menuItems } from "~/src/common/constants";
 
 import Icon from "~/src/components/dashboard/Icon";
+import List from "~/src/components/dashboard/List";
 
-function Nav() {
+function Nav({ router }) {
+  const [open, setOpen] = useState(false);
+  const pathname = router.pathname.slice(router.pathname.indexOf("/") + 1);
+
   return (
-    <Wrapper>
-      <List>
-        {menuItems.map((item, i) => (
-          <Link href={item.title.toLowerCase()}>
-            <a>
-              <ListItem key={i}>
-                <ListIcon icon={item.icon} />
-                {item.title}
-              </ListItem>
-            </a>
-          </Link>
-        ))}
-      </List>
-      <Logout>Logout</Logout>
-    </Wrapper>
+    <StyledNav>
+      <ToggleWrapper onClick={() => setOpen(!open)}>
+        <Toggle icon={open ? "close" : "menu"} />
+      </ToggleWrapper>
+      <List items={menuItems} pathname={pathname} open={open} />
+    </StyledNav>
   );
 }
 
-const Wrapper = styled.div`
+const StyledNav = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
-`;
+  flex-direction: row;
 
-const List = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
-
-const ListItem = styled.li`
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  &:hover {
-    background: yellow;
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    flex-direction: column;
   }
 `;
 
-const ListIcon = styled(Icon)`
-  width: 18px;
-  height: 18px;
-  margin-right: 18px;
-  fill: ${({ theme }) => theme.palette.primary};
+const ToggleWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 1rem 0 1rem 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    svg {
+      fill: ${({ theme }) => theme.palette.primary};
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    display: none;
+  }
 `;
 
-const Logout = styled.p`
-  position: absolute;
-  bottom: 0;
-  padding: 1rem 2rem;
+const Toggle = styled(Icon)`
+  width: 24px;
+  height: 24px;
+  fill: ${({ theme }) => theme.palette.secondaryAction};
+  transition: fill 250ms ease;
 `;
 
-export default Nav;
+export default withRouter(Nav);

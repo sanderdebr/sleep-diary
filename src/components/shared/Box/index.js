@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-function Box({ children, lessMargin }) {
-  return <StyledBox lessMargin={lessMargin}>{children}</StyledBox>;
+function Box({ children, ...props }) {
+  return <StyledBox {...props}>{children}</StyledBox>;
 }
 
 const StyledBox = styled.section`
   height: 100%;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing.gutter}px;
+  padding: ${(props) => (props.noPadding ? "0" : props.theme.spacing.gutter)}px;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
-    padding-left: ${({ lessMargin }) => (lessMargin ? "auto" : "8%")};
-    padding-right: 8%;
+    padding-left: ${({ noPadding }) => (noPadding ? "0" : "8%")};
+    padding-right: ${({ noPadding }) => (noPadding ? "0" : "8%")};
   }
 `;
 
