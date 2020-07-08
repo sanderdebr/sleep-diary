@@ -22,13 +22,13 @@ export const GlobalStyles = createGlobalStyle`
     a {
         text-decoration: none;
         cursor: pointer;
-        color: inherit;
+        color: ${({ theme }) => theme.palette.primary};
         transition: 250ms ease;
         &:hover {
             color: ${({ theme }) => theme.palette.primaryAction}
         }
     }
-
+    
     :focus {
         outline: none;
     }

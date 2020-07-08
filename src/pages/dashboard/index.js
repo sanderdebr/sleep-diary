@@ -5,7 +5,7 @@ import * as Constants from "~/src/common/constants";
 
 import Head from "~/src/components/shared/Head";
 import Box from "~/src/components/shared/Box";
-import Logo from "~/src/components/shared/Logo";
+import Sidebar from "~/src/components/dashboard/Sidebar";
 
 const cookies = new Cookies();
 
@@ -22,7 +22,7 @@ function Page(props) {
     <>
       <Head title="Home | SleepDiary" />
       <Box lessMargin>
-        <Logo lessMargin />
+        <Sidebar />
       </Box>
     </>
   );

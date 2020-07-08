@@ -19,8 +19,8 @@ const NoteWrapper = styled.footer`
   padding: 1rem 0;
   text-align: center;
   width: 100%;
-  font-size: 0.8rem;
-  color: ${({ theme }) => theme.palette.tertiaryAction};
+  font-size: 80%;
+  opacity: 50%;
 `;
 
 export default Note;
