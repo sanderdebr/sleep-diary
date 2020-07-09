@@ -19,7 +19,7 @@ function List({ items = [], pathname, open }) {
       ))}
       <Link href="/logout">
         <a>
-          <Logout>
+          <Logout open={open}>
             <ListIcon icon="logout" />
             logout
           </Logout>
@@ -33,6 +33,11 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
   display: ${({ open }) => (open ? "block" : "none")};
+  background: ${({ open }) => (open ? "white" : "none")};
+  right: ${({ open }) => (open ? "10%" : "0")};
+  top: ${({ open }) => (open ? "13%" : "0")};
+  position: ${({ open }) => (open ? "absolute" : "inherit")};
+  border-radius: ${({ theme }) => theme.general.borderRadius}px;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     display: block;
@@ -41,7 +46,7 @@ const StyledList = styled.ul`
 
 const Logout = styled(ListItem)`
   color: ${({ theme }) => theme.palette.secondary};
-  position: absolute;
+  position: ${({ open }) => (open ? "inherit" : "absolute")};
   bottom: 2rem;
   svg {
     fill: ${({ theme }) => theme.palette.secondary};

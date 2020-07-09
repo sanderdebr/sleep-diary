@@ -17,13 +17,14 @@ const StyledSidebar = styled.section`
   width: 100%;
   height: 100px;
   border-bottom: 1px solid ${({ theme }) => theme.palette.bgColor};
-  padding: ${({ theme }) => theme.spacing.gutter}px;
+  padding: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: ${({ theme }) => theme.palette.bg};
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
-    width: 250px;
+    width: 275px;
     height: 100%;
     position: relative;
     border-right: 1px solid ${({ theme }) => theme.palette.bgColor};

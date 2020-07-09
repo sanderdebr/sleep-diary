@@ -5,9 +5,6 @@ if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
 }
 
 import App from "next/app";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "~/src/common/styles/global";
-import theme from "~/src/common/styles/theme";
 import loadFonts from "~/src/common/fonts";
 
 import AppWrapper from "~/src/components/shared/AppWrapper";
@@ -20,12 +17,9 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <AppWrapper>
-          <Component {...pageProps} />
-        </AppWrapper>
-      </ThemeProvider>
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
     );
   }
 }

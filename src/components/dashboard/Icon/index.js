@@ -5,6 +5,7 @@ import CloseSVG from "~/public/icons/close.svg";
 import DashboardSVG from "~/public/icons/dashboard.svg";
 import SettingSVG from "~/public/icons/settings.svg";
 import LogoutSVG from "~/public/icons/logout.svg";
+import BellSVG from "~/public/icons/bell.svg";
 
 const icons = {
   menu: MenuSVG,
@@ -12,6 +13,7 @@ const icons = {
   dashboard: DashboardSVG,
   settings: SettingSVG,
   logout: LogoutSVG,
+  bell: BellSVG,
 };
 
 function Icon({ icon, className }) {

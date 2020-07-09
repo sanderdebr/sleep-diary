@@ -22,7 +22,7 @@ function Nav({ router }) {
   );
 }
 
-const StyledNav = styled.div`
+const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
