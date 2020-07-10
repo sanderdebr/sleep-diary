@@ -4,9 +4,9 @@ import Cookies from "universal-cookie";
 import { useEffect } from "react";
 import * as Constants from "~/src/common/constants";
 
-import Box from "~/src/components/Box";
-import Logo from "~/src/components/Logo";
-import { H2 } from "~/src/components/Text";
+import Box from "~/src/components/shared/Box";
+import Logo from "~/src/components/shared/Logo";
+import { H2 } from "~/src/components/shared/Text";
 
 const cookies = new Cookies();
 
