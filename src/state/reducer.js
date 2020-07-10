@@ -1,9 +1,19 @@
 import theme from "~/src/common/styles/theme";
 
+const persistTheme = (newTheme) =>
+  window.localStorage.setItem("theme", JSON.stringify(newTheme));
+
 export const reducer = (state, action) => {
+  let newTheme;
+
   switch (action.type) {
+    case "setTheme":
+      newTheme = action.value === "Night" ? theme.night : theme.day;
+      persistTheme(newTheme);
+      return { ...state, theme: newTheme };
     case "toggleTheme":
-      let newTheme = state.theme.id === "Day" ? theme.night : theme.day;
+      newTheme = state.theme.id === "Day" ? theme.night : theme.day;
+      persistTheme(newTheme);
       return { ...state, theme: newTheme };
     default:
       throw new Error();

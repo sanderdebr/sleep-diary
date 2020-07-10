@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import { withRouter } from "next/router";
 import styled from "styled-components";
 
@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "~/src/common/styles/global";
 
 import { initialState, reducer } from "~/src/state";
-import { useAppContext } from "~/src/state/hooks";
+import { useLocalStorage } from "~/src/state/hooks";
 
 import Container from "./Container";
 import Wave from "./Wave";
@@ -16,6 +16,11 @@ export const AppContext = createContext();
 function Wrapper({ children, router }) {
   const { pathname } = router;
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [storedTheme] = useLocalStorage("theme", "Night");
+
+  useEffect(() => {
+    dispatch({ type: "setTheme", value: storedTheme.id });
+  }, []);
 
   return (
     <ThemeProvider theme={state.theme}>

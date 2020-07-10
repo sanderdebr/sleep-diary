@@ -4,22 +4,18 @@ const general = {
 
 const palette = {
   day: {
-    primary: "#5E81AC",
+    primary: "#4C566A",
     secondary: "#D8DEE9",
-    primaryAction: "#8FBCBB",
-    secondaryAction: "#88C0D0",
     tertiaryAction: "#81A1C1",
     bgColor: "#ECEFF4",
     bg: "#fff",
   },
   night: {
-    primary: "#4C566A",
+    primary: "#ECEFF4",
     secondary: "#434C5E",
-    primaryAction: "#8FBCBB",
-    secondaryAction: "#88C0D0",
     tertiaryAction: "#81A1C1",
     bgColor: "#2E3440",
-    bg: "#2E3440",
+    bg: "#3B4252",
   },
 };
 

@@ -17,7 +17,7 @@ function Badge() {
 const BadgeSVG = styled.svg`
   position: absolute;
   path {
-    fill: ${({ theme }) => theme.palette.secondaryAction};
+    fill: ${({ theme }) => theme.palette.tertiaryAction};
   }
 `;
 

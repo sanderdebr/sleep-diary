@@ -25,13 +25,13 @@ const ButtonStyles = styled.button`
   display: inline-block;
   font-size: 17px;
   letter-spacing: 0.03em;
-  color: #ffffff;
+  color: white;
   position: relative;
   font-family: "Montserrat", sans-serif;
 
   &:before,
   span {
-    background-color: ${({ theme }) => theme.palette.primaryAction};
+    background-color: ${({ theme }) => theme.palette.tertiaryAction};
   }
 
   &:before {

@@ -22,6 +22,8 @@ const StyledSidebar = styled.section`
   justify-content: space-between;
   align-items: center;
   background: ${({ theme }) => theme.palette.bg};
+  border-top-left-radius: ${({ theme }) => theme.general.borderRadius}px;
+  border-top-right-radius: ${({ theme }) => theme.general.borderRadius}px;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     width: 275px;
@@ -31,6 +33,7 @@ const StyledSidebar = styled.section`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    border-top-right-radius: 0;
   }
 `;
 

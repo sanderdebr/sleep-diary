@@ -5,8 +5,6 @@ import { useAppContext } from "~/src/state/hooks";
 function ThemeToggle() {
   const { theme, dispatch } = useAppContext();
 
-  console.log(theme);
-
   const themeToggle = () => {
     dispatch({ type: "toggleTheme" });
   };
@@ -14,7 +12,7 @@ function ThemeToggle() {
   return (
     <StyledLabel>
       <StyledInput
-        onClick={themeToggle}
+        onChange={themeToggle}
         type="checkbox"
         checked={theme.id === "Night"}
       />
@@ -38,14 +36,14 @@ const StyledSpan = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: ${({ theme }) => theme.palette.secondary};
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 26px;
 
   &:after {
     color: ${({ theme }) => theme.palette.secondary};
-    content: "dark";
+    content: '${({ text }) => text.id}';
     margin-left: -60px;
     margin-top: 3px;
     position: absolute;
@@ -72,11 +70,11 @@ const StyledInput = styled.input`
   height: 0;
 
   &:checked + ${StyledSpan} {
-    background-color: #2196f3;
+    background-color: ${({ theme }) => theme.palette.tertiaryAction};
   }
 
   &:focus + ${StyledSpan} {
-    box-shadow: 0 0 1px #2196f3;
+    box-shadow: 0 0 1px ${({ theme }) => theme.palette.tertiaryAction};
   }
 
   &:checked + ${StyledSpan}:before {

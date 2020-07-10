@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
-const H1 = styled.h1`
+function H1({ bottomMargin, children }) {
+  return <StyledH1 bottomMargin={bottomMargin}>{children}</StyledH1>;
+}
+
+const StyledH1 = styled.h1`
   font-weight: normal;
-  font-size: 6rem;
+  font-size: 1.7rem;
+  margin: ${({ bottomMargin }) => (bottomMargin ? "0 0 2rem 0" : "auto")};
 `;
 
 export default H1;

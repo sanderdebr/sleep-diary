@@ -8,6 +8,6 @@ export const ListIcon = styled(Icon)`
   margin-right: 18px;
   fill: ${(props) =>
     props.active
-      ? props.theme.palette.secondaryAction
+      ? props.theme.palette.tertiaryAction
       : props.theme.palette.primary};
 `;

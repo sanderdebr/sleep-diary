@@ -37,6 +37,7 @@ const InputEffect = styled.div`
   width: 100%;
   margin: 1.5rem 0 2.5rem 0;
   position: relative;
+  z-index: 1;
 `;
 
 const FocusBorder = styled.span``;
@@ -57,7 +58,7 @@ const InputStyled = styled.input`
     left: 0;
     width: 0;
     height: 2px;
-    background-color: ${({ theme }) => theme.palette.primaryAction};
+    background-color: ${({ theme }) => theme.palette.tertiaryAction};
     transition: 0.4s;
   }
   &:focus ~ .focus-border {
@@ -76,13 +77,13 @@ const InputStyled = styled.input`
   }
   &:focus ~ label {
     top: -16px;
-    color: ${({ theme }) => theme.palette.primaryAction};
+    color: ${({ theme }) => theme.palette.tertiaryAction};
     transition: 0.3s;
     font-size: 12px;
   }
   &.blurred ~ label {
     top: -16px;
-    color: ${({ theme }) => theme.palette.primaryAction};
+    color: ${({ theme }) => theme.palette.tertiaryAction};
     font-size: 12px;
   }
 `;

@@ -18,6 +18,7 @@ const StyledTopbar = styled.section`
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.palette.bgColor};
   background: ${({ theme }) => theme.palette.bg};
+  border-top-right-radius: ${({ theme }) => theme.general.borderRadius}px;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     display: flex;

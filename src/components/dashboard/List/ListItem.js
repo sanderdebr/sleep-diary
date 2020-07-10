@@ -7,7 +7,7 @@ export const ListItem = styled.li`
   transition: padding 250ms ease-in-out;
   color: ${(props) =>
     props.active
-      ? props.theme.palette.secondaryAction
+      ? props.theme.palette.tertiaryAction
       : props.theme.palette.primary};
 
   &:hover {
