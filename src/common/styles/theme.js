@@ -31,6 +31,7 @@ const fontSizes = {
 
 const spacing = {
   gutter: 40,
+  inner: 20,
 };
 
 const mixins = {

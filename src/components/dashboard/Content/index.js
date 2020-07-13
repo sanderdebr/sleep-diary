@@ -1,16 +1,21 @@
 import styled from "styled-components";
 
-import { H1 } from "~/src/components/shared/Text";
+import { H2 } from "~/src/components/shared/Text";
 import Topbar from "~/src/components/dashboard/Topbar";
+import Data from "~/src/components/dashboard/Data";
 
-function Content() {
+function Content({ className }) {
   return (
     <StyledContent>
       <Topbar />
       <StyledMain>
         <TopSection>
-          <H1 bottomMargin>Dashboard</H1>
-          <Article>Graphs</Article>
+          <H2 bottomMargin>Dashboard</H2>
+          <Article>
+            <Today className={className} />
+            <Divider />
+            <Tomorrow className={className} />
+          </Article>
         </TopSection>
         <BottomSection>
           <Article>Graphs</Article>
@@ -49,8 +54,25 @@ const BottomSection = styled.section`
 
 const Article = styled.article`
   background: ${({ theme }) => theme.palette.bg};
-  padding: ${({ theme }) => theme.spacing.gutter}px;
+  padding: ${({ theme }) => theme.spacing.inner}px;
   height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Today = styled(Data)`
+  background: lightblue;
+`;
+
+const Tomorrow = styled(Data)`
+  background: lightcoral;
+`;
+
+const Divider = styled.div`
+  height: 100%;
+  width: 1px;
+  background: ${({ theme }) => theme.palette.bgColor};
 `;
 
 export default Content;
