@@ -8,10 +8,10 @@ function Data({ ...props }) {
     <DataStyles {...props}>
       <Left>
         <H4>Monday 13th of July</H4>
-        <H1>Today</H1>
+        <H1 bottomMargin>Today</H1>
         <ScoreCircle percent={75} />
       </Left>
-      <Right></Right>
+      <Right>Inputs</Right>
     </DataStyles>
   );
 }
@@ -19,18 +19,23 @@ function Data({ ...props }) {
 const DataStyles = styled.section`
   width: 100%;
   height: 100%;
+  padding: ${({ theme }) => theme.spacing.inner}px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 const Left = styled.div`
-  width: 50%;
-  border-right: 1px solid #ccc;
+  width: 40%;
+  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  color: ${({ theme }) => theme.palette.bgColor};
 `;
 
 const Right = styled.div`
-  width: 50%;
+  width: 60%;
 `;
 
 export default Data;

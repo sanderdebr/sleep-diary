@@ -1,8 +1,9 @@
 import { useRef, useEffect } from "react";
 
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 
 function ScoreCircle({ percent }) {
+  const theme = useTheme();
   const circle = useRef();
 
   useEffect(() => {
@@ -21,15 +22,15 @@ function ScoreCircle({ percent }) {
 
   return (
     <Wrapper>
-      <svg width="120" height="120">
+      <svg width="90" height="90">
         <circle
           ref={circle}
-          stroke="white"
-          stroke-width="4"
+          stroke={theme.palette.bgColor}
+          strokeWidth="4"
           fill="transparent"
-          r="52"
-          cx="60"
-          cy="60"
+          r="37"
+          cx="45"
+          cy="45"
         ></circle>
       </svg>
       <Percent>{percent}</Percent>
@@ -38,8 +39,9 @@ function ScoreCircle({ percent }) {
 }
 
 const Wrapper = styled.div`
-  padding: ${({ theme }) => theme.spacing.inner}px;
+  padding: 0;
   width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +50,7 @@ const Wrapper = styled.div`
 const Percent = styled.div`
   position: absolute;
   margin: 0 auto;
-  font-size: 200%;
+  font-size: 150%;
 `;
 
 export default ScoreCircle;

@@ -13,7 +13,6 @@ function Content({ className }) {
           <H2 bottomMargin>Dashboard</H2>
           <Article>
             <Today className={className} />
-            <Divider />
             <Tomorrow className={className} />
           </Article>
         </TopSection>
@@ -44,7 +43,12 @@ const StyledMain = styled.main`
 
 const TopSection = styled.section`
   width: 100%;
+  height: 325px;
   padding: ${({ theme }) => theme.spacing.gutter}px;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    height: 325px;
+  }
 `;
 
 const BottomSection = styled.section`
@@ -53,26 +57,38 @@ const BottomSection = styled.section`
 `;
 
 const Article = styled.article`
-  background: ${({ theme }) => theme.palette.bg};
-  padding: ${({ theme }) => theme.spacing.inner}px;
+  background: transparent;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    flex-direction: row;
+  }
 `;
 
 const Today = styled(Data)`
-  background: lightblue;
+  background: ${({ theme }) => theme.palette.tertiaryAction};
+  border-radius: ${({ theme }) => theme.general.borderRadius}px
+    ${({ theme }) => theme.general.borderRadius}px 0 0;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    border-radius: ${({ theme }) => theme.general.borderRadius}px 0 0
+      ${({ theme }) => theme.general.borderRadius}px;
+  }
 `;
 
 const Tomorrow = styled(Data)`
-  background: lightcoral;
-`;
-
-const Divider = styled.div`
-  height: 100%;
-  width: 1px;
   background: ${({ theme }) => theme.palette.bgColor};
+  border-radius: 0 0 ${({ theme }) => theme.general.borderRadius}px
+    ${({ theme }) => theme.general.borderRadius}px;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    border-radius: 0 ${({ theme }) => theme.general.borderRadius}px
+      ${({ theme }) => theme.general.borderRadius}px 0;
+  }
 `;
 
 export default Content;
