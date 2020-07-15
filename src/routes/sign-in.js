@@ -21,12 +21,12 @@ export default async (req, res, app) => {
     prompt: "consent",
   });
 
-  const { viewer } = await Session.getViewer(req);
+  const { session } = await Session.getSession(req);
 
-  if (!viewer || viewer.error) {
-    return app.render(req, res, "/", { googleURL, viewer: null });
+  if (!session || session.error) {
+    return app.render(req, res, "/", { googleURL, session: null });
   }
 
   // Already signed in
-  app.render(req, res, "/dashboard", { viewer });
+  app.render(req, res, "/dashboard", { session });
 };

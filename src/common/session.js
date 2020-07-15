@@ -4,8 +4,8 @@ import * as Database from "./database";
 
 import JWT from "jsonwebtoken";
 
-export const getViewer = async (req, existingToken = undefined) => {
-  let viewer = null;
+export const getSession = async (req, existingToken = undefined) => {
+  let session = null;
 
   try {
     let token = existingToken;
@@ -20,14 +20,14 @@ export const getViewer = async (req, existingToken = undefined) => {
     //TODO: JWT error handling
 
     let decode = JWT.verify(token, Credentials.JWT_SECRET);
-    viewer = await Database.getUserByEmail({ email: decode.email });
+    session = await Database.getUserByEmail({ email: decode.email });
   } catch (err) {
     return err;
   }
 
-  if (!viewer || viewer.error) {
-    viewer = null;
+  if (!session || session.error) {
+    session = null;
   }
 
-  return { viewer };
+  return { session };
 };

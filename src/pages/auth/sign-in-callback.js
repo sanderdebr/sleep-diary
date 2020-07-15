@@ -33,7 +33,7 @@ function Page(props) {
 Page.getInitialProps = async (ctx) => {
   return {
     error: ctx.err,
-    viewer: ctx.query.viewer,
+    session: ctx.query.session,
     jwt: ctx.query.jwt,
     cookie: ctx.query.cookie,
   };

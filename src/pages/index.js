@@ -52,7 +52,7 @@ function Page({ googleURL = null }) {
 Page.getInitialProps = async (ctx) => {
   return {
     googleURL: ctx.query.googleURL,
-    viewer: ctx.query.viewer,
+    session: ctx.query.session,
     error: ctx.err,
   };
 };

@@ -69,7 +69,7 @@ export default async (req, res, app) => {
       console.log("ERROR IN CALLBACK", user.error);
       return app.render(req, res, "/auth/sign-in-error", {
         jwt: null,
-        viewer: null,
+        session: null,
       });
     }
 
@@ -80,7 +80,7 @@ export default async (req, res, app) => {
 
     return app.render(req, res, "/dashboard", {
       jwt: authToken,
-      viewer: user,
+      session: user,
     });
   });
 };

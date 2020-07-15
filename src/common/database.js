@@ -37,11 +37,18 @@ export const getUserByEmail = async ({ email }) => {
   });
 };
 
-export const createUser = async ({ email, password, salt, data = {} }) => {
+export const createUser = async ({
+  email,
+  password,
+  salt,
+  data = { name: null, verified: null },
+}) => {
   return await runQuery({
     label: "CREATE_USER",
     queryFn: async () => {
-      const query = await db("users").insert([{ email, password, salt, data }]);
+      const query = await db("users").insert([
+        { email, password, salt, name: data.name, verified: data.verified },
+      ]);
 
       // Returns ID of created user
       const index = query ? query.pop() : null;

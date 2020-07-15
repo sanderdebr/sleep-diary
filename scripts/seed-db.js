@@ -15,20 +15,46 @@ console.log(`RUNNING: seed-database.js NODE_ENV=${environment}`);
 // SCRIPTS
 // --------------------------
 
-const createUserTable = db.schema.createTable("users", (table) => {
-  table.increments("id");
-  table.timestamp("created_at").defaultTo(db.fn.now());
-  table.timestamp("updated_at").defaultTo(db.fn.now());
-  table.string("email").unique().notNullable();
-  table.string("password").nullable();
-  table.string("salt").nullable();
-  table.json("data").nullable();
+const createUserTable = db.schema.hasTable("users").then((exists) => {
+  if (!exists) {
+    return db.schema.createTable("users", (table) => {
+      table.increments("id");
+      table.timestamp("created_at").defaultTo(db.fn.now());
+      table.timestamp("updated_at").defaultTo(db.fn.now());
+      table.string("email").unique().notNullable();
+      table.string("password");
+      table.string("salt");
+      table.string("name");
+      table.string("verified");
+    });
+  } else {
+    console.log("Table users already exists");
+  }
+});
+
+const createDataTable = db.schema.hasTable("data").then((exists) => {
+  if (!exists) {
+    return db.schema.createTable("data", (table) => {
+      table.increments("id");
+      table.timestamp("created_at").defaultTo(db.fn.now());
+      table.timestamp("updated_at").defaultTo(db.fn.now());
+      table.integer("energy");
+      table.integer("feeling");
+      table.integer("total_sleep");
+      table.integer("deep_sleep");
+      table.string("activities");
+      table.string("adjustments");
+      table.timestamp("day").defaultTo(db.fn.now());
+    });
+  } else {
+    console.log("Table data already exists");
+  }
 });
 
 // --------------------------
 // RUN
 // --------------------------
 
-Promise.all([createUserTable]);
+Promise.all([createUserTable, createDataTable]);
 
 console.log(`FINISHED: seed-db.js NODE_ENV=${environment}`);

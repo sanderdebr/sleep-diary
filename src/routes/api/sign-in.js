@@ -85,7 +85,7 @@ export default async (req, res) => {
     if (req.body.email === verified.email) {
       return res.status(200).send({
         message: "You are already authenticated. Welcome back!",
-        viewer: user,
+        session: user,
       });
     }
   }

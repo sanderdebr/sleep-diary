@@ -30,7 +30,7 @@ function ScoreCircle({ percent }) {
         <circle
           ref={circle}
           stroke={theme.palette.tertiaryAction}
-          stroke-dashoffset="328"
+          strokeDashoffset="328"
           strokeWidth="4"
           fill={theme.palette.bgColor}
           r="52"

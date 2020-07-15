@@ -30,7 +30,7 @@ app.prepare().then(() => {
   });
 
   server.get("/auth/sign-in-error", async (req, res) => {
-    return app.render(req, res, "/auth/sign-in-error", { viewer: null });
+    return app.render(req, res, "/auth/sign-in-error", { session: null });
   });
 
   //TODO: add protected routes
