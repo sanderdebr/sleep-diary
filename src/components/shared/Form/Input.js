@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-function Input({ placeholder, auth, setAuth, ...props }) {
+function Input({ placeholder, state, setState, ...props }) {
   let touched = false;
   const ref = useRef();
 
@@ -16,14 +16,14 @@ function Input({ placeholder, auth, setAuth, ...props }) {
   const handleChange = ({ target }) => {
     handleStyling();
     const { name, value } = target;
-    setAuth({ ...auth, [name]: value });
+    setState({ ...state, [name]: value });
   };
 
   return (
     <InputEffect>
       <InputStyled
         ref={ref}
-        value={auth[props.name]}
+        value={state[props.name]}
         onChange={handleChange}
         {...props}
       />

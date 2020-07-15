@@ -13,7 +13,6 @@ function Content({ className }) {
           <H2 bottomMargin>Dashboard</H2>
           <Article>
             <Today className={className} />
-            <Tomorrow className={className} />
           </Article>
         </TopSection>
         <BottomSection>
@@ -70,25 +69,8 @@ const Article = styled.article`
 `;
 
 const Today = styled(Data)`
-  background: ${({ theme }) => theme.palette.tertiaryAction};
-  border-radius: ${({ theme }) => theme.general.borderRadius}px
-    ${({ theme }) => theme.general.borderRadius}px 0 0;
-
-  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
-    border-radius: ${({ theme }) => theme.general.borderRadius}px 0 0
-      ${({ theme }) => theme.general.borderRadius}px;
-  }
-`;
-
-const Tomorrow = styled(Data)`
-  background: ${({ theme }) => theme.palette.bgColor};
-  border-radius: 0 0 ${({ theme }) => theme.general.borderRadius}px
-    ${({ theme }) => theme.general.borderRadius}px;
-
-  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
-    border-radius: 0 ${({ theme }) => theme.general.borderRadius}px
-      ${({ theme }) => theme.general.borderRadius}px 0;
-  }
+  background: ${({ theme }) => theme.palette.bg};
+  border-right: 1px solid ${({ theme }) => theme.palette.bgColor};
 `;
 
 export default Content;

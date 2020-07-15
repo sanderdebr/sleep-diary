@@ -10,11 +10,15 @@ function ScoreCircle({ percent }) {
     let radius = circle.current.r.baseVal.value;
     let circumference = radius * 2 * Math.PI;
     circle.current.style.strokeDasharray = `${circumference} ${circumference}`;
-    circle.current.style.strokeDashoffset = `${circumference}`;
+
+    function getOffset(percent = 0) {
+      return circumference - (percent / 100) * circumference;
+    }
 
     function setProgress(percent) {
-      const offset = circumference - (percent / 100) * circumference;
+      const offset = getOffset(percent);
       circle.current.style.strokeDashoffset = offset;
+      circle.current.style.opacity = 1;
     }
 
     setProgress(percent);
@@ -22,35 +26,40 @@ function ScoreCircle({ percent }) {
 
   return (
     <Wrapper>
-      <svg width="90" height="90">
+      <svg width="120" height="120">
         <circle
           ref={circle}
-          stroke={theme.palette.bgColor}
+          stroke={theme.palette.tertiaryAction}
+          stroke-dashoffset="328"
           strokeWidth="4"
-          fill="transparent"
-          r="37"
-          cx="45"
-          cy="45"
+          fill={theme.palette.bgColor}
+          r="52"
+          cx="60"
+          cy="60"
         ></circle>
       </svg>
-      <Percent>{percent}</Percent>
+      <Percent>{percent}%</Percent>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
   padding: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  circle {
+    opacity: 0;
+    transition: stroke-dashoffset 750ms ease-in-out;
+  }
 `;
 
 const Percent = styled.div`
   position: absolute;
   margin: 0 auto;
   font-size: 150%;
+  color: ${({ theme }) => theme.palette.tertiaryAction};
 `;
 
 export default ScoreCircle;

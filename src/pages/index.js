@@ -18,7 +18,7 @@ function Page({ googleURL = null }) {
       <Home>
         <Left>
           <Logo />
-          <H2>Please login to your account.</H2>
+          <H2 bottomMargin>Please login to your account.</H2>
           <GoogleSignInBtn url={googleURL} />
           <FormGroup
             onSubmit={(e) => {
@@ -30,15 +30,15 @@ function Page({ googleURL = null }) {
               placeholder="E-mail address"
               type="text"
               name="email"
-              auth={auth}
-              setAuth={setAuth}
+              state={auth}
+              setState={setAuth}
             />
             <Input
               placeholder="Password"
               type="password"
               name="password"
-              auth={auth}
-              setAuth={setAuth}
+              state={auth}
+              setState={setAuth}
             />
             <Button text="Sign in or create account" />
           </FormGroup>
