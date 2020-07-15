@@ -31,7 +31,7 @@ const ButtonStyles = styled.button`
 
   &:before,
   span {
-    background-color: ${({ theme }) => theme.palette.tertiaryAction};
+    background-color: ${({ theme }) => theme.palette.primaryAction};
   }
 
   &:before {

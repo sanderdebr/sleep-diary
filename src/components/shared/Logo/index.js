@@ -29,7 +29,7 @@ const LogoWrapper = styled.div`
 
   h3 {
     margin: 0 0 0 2.5rem;
-    color: ${({ theme }) => theme.palette.tertiaryAction};
+    color: ${({ theme }) => theme.palette.primaryAction};
     font-weight: bold;
   }
 `;

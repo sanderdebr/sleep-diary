@@ -16,8 +16,8 @@ function Number({ state, setState, ...props }) {
           {...props}
         ></StyledNumber>
         <Controls>
-          <Item>+</Item>
-          <Item>-</Item>
+          <Add>+</Add>
+          <Subtract>-</Subtract>
         </Controls>
       </Right>
     </Wrapper>
@@ -33,7 +33,6 @@ const Wrapper = styled.div`
 `;
 
 const Right = styled.div`
-  padding: 0 0.25rem;
   display: flex;
 `;
 
@@ -43,29 +42,50 @@ const Label = styled.label`
   font-size: 90%;
 `;
 
+const Controls = styled.div``;
+
+const Add = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.25rem;
+  background: ${({ theme }) => theme.palette.tertiaryAction};
+  color: white;
+  opacity: 0.25;
+  transition: all 250ms ease;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 0;
+
+  &:hover {
+    opacity: 1;
+    background: ${({ theme }) => theme.palette.aurora.green};
+  }
+`;
+
+const Subtract = styled(Add)`
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+
+  &:hover {
+    background: ${({ theme }) => theme.palette.aurora.red};
+  }
+`;
+
 const StyledNumber = styled.input`
   border: none;
   background: ${({ theme }) => theme.palette.bgColor};
   border-right: none;
   text-align: center;
-  pointer-events: none;
+  color: ${({ theme }) => theme.palette.primary};
+  width: 45px;
+  border-radius: 3px 0 0 3px;
 
   &::-webkit-inner-spin-button,
   &::-webkit-inner-spin-button {
     appearance: none;
     margin: 0;
   }
-`;
-
-const Controls = styled.div``;
-
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.1rem;
-  background: ${({ theme }) => theme.palette.tertiaryAction};
-  color: white;
 `;
 
 export default Number;

@@ -6,16 +6,34 @@ const palette = {
   day: {
     primary: "#4C566A",
     secondary: "#D8DEE9",
+    primaryAction: "#8FBCBB",
+    secondaryAction: "#88C0D0",
     tertiaryAction: "#81A1C1",
     bgColor: "#ECEFF4",
     bg: "#fff",
+    aurora: {
+      red: "#BF616A",
+      orange: "#D08770",
+      yellow: "#EBCB8B",
+      green: "#A3BE8C",
+      pink: "#B48EAD",
+    },
   },
   night: {
     primary: "#ECEFF4",
     secondary: "#434C5E",
+    primaryAction: "#8FBCBB",
+    secondaryAction: "#88C0D0",
     tertiaryAction: "#81A1C1",
     bgColor: "#2E3440",
     bg: "#3B4252",
+    aurora: {
+      red: "#BF616A",
+      orange: "#D08770",
+      yellow: "#EBCB8B",
+      green: "#A3BE8C",
+      pink: "#B48EAD",
+    },
   },
 };
 
