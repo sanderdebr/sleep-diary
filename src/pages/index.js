@@ -7,10 +7,19 @@ import GoogleSignInBtn from "~/src/components/home/GoogleSignInBtn";
 import { Home, Left, Right } from "~/src/components/home/HomeWrapper";
 import Logo from "~/src/components/shared/Logo";
 import { H2 } from "~/src/components/shared/Text";
-import { FormGroup, Input, Button } from "~/src/components/shared/Form";
+import { FormGroup, Input, Button, Error } from "~/src/components/shared/Form";
 
 function Page({ googleURL = null }) {
   const [auth, setAuth] = useState({ email: "", password: "" });
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const trySignIn = await Actions.localSignIn(auth);
+    if (trySignIn) {
+      setError(trySignIn);
+    }
+  };
 
   return (
     <>
@@ -20,12 +29,7 @@ function Page({ googleURL = null }) {
           <Logo />
           <H2 bottomMargin>Please login to your account.</H2>
           <GoogleSignInBtn url={googleURL} />
-          <FormGroup
-            onSubmit={(e) => {
-              e.preventDefault();
-              Actions.localSignIn(auth);
-            }}
-          >
+          <FormGroup onSubmit={handleSubmit}>
             <Input
               placeholder="E-mail address"
               type="text"
@@ -40,6 +44,7 @@ function Page({ googleURL = null }) {
               state={auth}
               setState={setAuth}
             />
+            <Error>{error}</Error>
             <Button text="Sign in or create account" />
           </FormGroup>
         </Left>

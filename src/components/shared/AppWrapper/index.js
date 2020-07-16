@@ -18,9 +18,11 @@ function Wrapper({ children, router }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [storedTheme] = useLocalStorage("theme", "Night");
 
+  console.log(storedTheme);
+
   useEffect(() => {
     dispatch({ type: "setTheme", value: storedTheme.id });
-  }, []);
+  }, [storedTheme]);
 
   return (
     <ThemeProvider theme={state.theme}>

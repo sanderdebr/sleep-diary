@@ -1,11 +1,18 @@
 import { useEffect } from "react";
 
+import * as Constants from "~/src/common/constants";
+
 import Head from "~/src/components/shared/Head";
 import Box from "~/src/components/shared/Box";
 import Logo from "~/src/components/shared/Logo";
 import { H2 } from "~/src/components/shared/Text";
+import Cookies from "universal-cookie";
 
-function Page() {
+const cookies = new Cookies();
+
+function Page(props) {
+  console.log(props);
+
   useEffect(() => {
     const jwt = cookies.get(Constants.session.key);
     if (jwt) {
@@ -23,5 +30,13 @@ function Page() {
     </>
   );
 }
+
+Page.getInitialProps = async (ctx) => {
+  return {
+    error: ctx.err,
+    session: ctx.query.session,
+    jwt: ctx.query.jwt,
+  };
+};
 
 export default Page;

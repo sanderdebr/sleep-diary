@@ -20,6 +20,7 @@ export const getSession = async (req, existingToken = undefined) => {
     //TODO: JWT error handling
 
     let decode = JWT.verify(token, Credentials.JWT_SECRET);
+
     session = await Database.getUserByEmail({ email: decode.email });
   } catch (err) {
     return err;

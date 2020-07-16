@@ -1,5 +1,6 @@
 import * as Middleware from "~/src/common/middleware";
 import * as Routes from "~/src/routes";
+import * as Session from "~/src/common/session";
 
 import express from "express";
 import next from "next";
@@ -36,6 +37,16 @@ app.prepare().then(() => {
   //TODO: add protected routes
   server.get("/dashboard", Middleware.RequireAuth, async (req, res) => {
     return await Routes.dashboard(req, res, app);
+  });
+
+  server.get("/auth/sign-out", async (req, res) => {
+    const { session } = await Session.getSession(req);
+
+    if (!session || session.error) {
+      return app.render(req, res, "/auth/sign-in-error", { session: null });
+    }
+
+    return app.render(req, res, "/auth/sign-out", { session });
   });
 
   server.all("*", (req, res) => {

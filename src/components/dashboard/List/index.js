@@ -17,7 +17,7 @@ function List({ items = [], pathname, open }) {
           </a>
         </Link>
       ))}
-      <Link href="/logout">
+      <Link href="/auth/sign-out">
         <a>
           <Logout open={open}>
             <ListIcon icon="logout" />

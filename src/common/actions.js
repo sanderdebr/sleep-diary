@@ -36,8 +36,7 @@ export const localSignIn = async (auth) => {
   const json = await response.json();
 
   if (json.error) {
-    console.log(json.error);
-    return;
+    return json.error;
   }
 
   if (json.token) {

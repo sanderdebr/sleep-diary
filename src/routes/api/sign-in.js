@@ -73,7 +73,7 @@ export default async (req, res) => {
     if (!validPass) {
       return res
         .status(500)
-        .send({ error: "We would not authenticate you (2). " });
+        .send({ error: "We could not authenticate you (2). " });
     }
   }
 
