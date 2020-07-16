@@ -11,12 +11,12 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 function Page(props) {
-  console.log(props);
-
   useEffect(() => {
     const jwt = cookies.get(Constants.session.key);
+
     if (jwt) {
-      cookies.remove(Constants.session.key);
+      cookies.remove(Constants.session.key, { path: "/" });
+      window.location.href = "/";
       return;
     }
   }, []);

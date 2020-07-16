@@ -15,7 +15,6 @@ const ContainerWrapper = styled.main`
   z-index: 1;
   width: 85vw;
   height: 100%;
-  background-color: #fff;
   box-shadow: ${({ theme }) => theme.mixins.boxShadow};
   margin-top: 2em;
   margin-bottom: 2em;

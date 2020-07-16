@@ -15,8 +15,13 @@ export const reducer = (state, action) => {
       newTheme = state.theme.id === "Day" ? theme.night : theme.day;
       persistTheme(newTheme);
       return { ...state, theme: newTheme };
-    case "updateSession":
-      return { ...state, session: action.value };
+    case "updateUser":
+      return { ...state, session: { ...state.session, user: action.value } };
+    case "getActivities":
+      return {
+        ...state,
+        session: { ...state.session, activities: action.value },
+      };
     default:
       throw new Error();
   }

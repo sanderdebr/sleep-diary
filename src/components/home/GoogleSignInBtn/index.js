@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 const GoogleButton = styled.div`
   width: 100%;
   padding: 12px 16px;
-  background: #ffffff;
+  background: ${({ theme }) => theme.palette.bgColor};
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
   border-radius: 2px;
   font-size: 16px;

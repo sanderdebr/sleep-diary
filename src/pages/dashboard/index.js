@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useAppContext } from "~/src/state/hooks";
 
 import * as Constants from "~/src/common/constants";
+// import * as Database from "~/src/common/database";
 
 import Head from "~/src/components/shared/Head";
 import Box from "~/src/components/shared/Box";
@@ -12,27 +13,41 @@ import Content from "~/src/components/dashboard/Content";
 
 const cookies = new Cookies();
 
-function Dashboard(props) {
-  const { session, dispatch } = useAppContext();
-  console.log("session: ", session);
+function Dashboard({ session, jwt }) {
+  const { dispatch } = useAppContext();
 
-  if (props.session) {
+  // Update session user data
+  if (session) {
     useEffect(() => {
-      dispatch({ type: "updateSession", value: props.session });
+      dispatch({
+        type: "updateUser",
+        value: { ...session },
+      });
+    }, [session]);
+  }
 
-      if (props.jwt) {
-        cookies.set(Constants.session.key, props.jwt, { path: "/" });
-        return;
-      }
+  // Set cookie
+  if (jwt) {
+    useEffect(() => {
+      cookies.set(Constants.session.key, jwt, { path: "/" });
+      return;
     }, []);
   }
+
+  // Get activities
+  // if (!session.activities && session) {
+  //   useEffect(async () => {
+  //     const activities = 5; //await Database.getActivities({ id: session.user.id });
+  //     dispatch({ type: "getActivities", value: activities });
+  //   }, [session]);
+  // }
 
   return (
     <>
       <Head title="Home | SleepDiary" />
       <Box noPadding flex>
         <Sidebar />
-        <Content session={props.session} />
+        <Content session={session} />
       </Box>
     </>
   );

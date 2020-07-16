@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { H2 } from "~/src/components/shared/Text";
 import Topbar from "~/src/components/dashboard/Topbar";
 import Data from "~/src/components/dashboard/Data";
+import Graphs from "~/src/components/dashboard/Graphs";
 
 function Content({ className }) {
   return (
@@ -16,7 +17,9 @@ function Content({ className }) {
           </Article>
         </TopSection>
         <BottomSection>
-          <Article>Graphs</Article>
+          <Article>
+            <Graphs />
+          </Article>
         </BottomSection>
       </StyledMain>
     </StyledContent>

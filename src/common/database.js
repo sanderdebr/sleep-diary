@@ -62,3 +62,28 @@ export const createUser = async ({
     },
   });
 };
+
+// export const getActivities = async ({ id }) => {
+//   return await runQuery({
+//     label: "GET_ACTIVITIES",
+//     queryFn: async () => {
+//       const query = await db("data").where("id", id);
+
+//       if (!query || query.error) {
+//         return null;
+//       }
+
+//       if (query[0]) {
+//         return query[0];
+//       }
+
+//       return null;
+//     },
+//     errorFn: async (err) => {
+//       return {
+//         error: "GET_ACTIVITIES",
+//         source: err,
+//       };
+//     },
+//   });
+// };

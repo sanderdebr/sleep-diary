@@ -3,11 +3,25 @@ import styled from "styled-components";
 import Icon from "~/src/components/dashboard/Icon";
 import ThemeToggle from "./ThemeToggle";
 
+import { useAppContext } from "~/src/state/hooks";
+
 function Topbar() {
+  const { session } = useAppContext();
+  let name;
+
+  console.log(session);
+
+  if (session.user) {
+    name = session.user.name.split(" ")[0];
+  }
+
   return (
     <StyledTopbar>
-      <ThemeToggle />
-      <TopbarIcon icon="bell" />
+      {<Welcome>Hi, {name}</Welcome>}
+      <Right>
+        <ThemeToggle />
+        <TopbarIcon icon="bell" />
+      </Right>
     </StyledTopbar>
   );
 }
@@ -22,10 +36,15 @@ const StyledTopbar = styled.section`
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: ${({ theme }) => theme.spacing.gutter}px;
   }
+`;
+
+const Right = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const TopbarIcon = styled(Icon)`
@@ -38,6 +57,17 @@ const TopbarIcon = styled(Icon)`
 
   &:hover {
     transform: rotate(15deg);
+  }
+`;
+
+const Welcome = styled.div`
+  display: none;
+  margin: 0;
+  padding: 0;
+  color: ${({ theme }) => theme.palette.secondary};
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    display: flex;
   }
 `;
 

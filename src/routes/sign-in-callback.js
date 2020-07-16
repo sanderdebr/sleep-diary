@@ -73,6 +73,8 @@ export default async (req, res, app) => {
       });
     }
 
+    user = await Database.getUserByEmail({ email });
+
     const authToken = JWT.sign(
       { user: user.id, email: user.email },
       Credentials.JWT_SECRET

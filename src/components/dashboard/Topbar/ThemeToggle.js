@@ -10,14 +10,17 @@ function ThemeToggle() {
   };
 
   return (
-    <StyledLabel>
-      <StyledInput
-        onChange={themeToggle}
-        type="checkbox"
-        checked={theme.id === "Night"}
-      />
-      <StyledSpan text={theme} />
-    </StyledLabel>
+    <>
+      <StyledText>{theme.id}</StyledText>
+      <StyledLabel>
+        <StyledInput
+          onChange={themeToggle}
+          type="checkbox"
+          checked={theme.id === "Night"}
+        />
+        <StyledSpan />
+      </StyledLabel>
+    </>
   );
 }
 
@@ -41,15 +44,6 @@ const StyledSpan = styled.span`
   transition: 0.4s;
   border-radius: 26px;
 
-  &:after {
-    color: ${({ theme }) => theme.palette.secondary};
-    content: '${({ text }) => text.id}';
-    margin-left: -60px;
-    margin-top: 3px;
-    position: absolute;
-    text-align: right;
-  }
-
   &:before {
     position: absolute;
     content: "";
@@ -62,6 +56,10 @@ const StyledSpan = styled.span`
     transition: 0.4s;
     border-radius: 50%;
   }
+`;
+
+const StyledText = styled.div`
+  margin-right: 1.5rem;
 `;
 
 const StyledInput = styled.input`
