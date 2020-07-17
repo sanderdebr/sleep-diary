@@ -36,7 +36,7 @@ app.prepare().then(() => {
 
   //TODO: add protected routes
   server.get("/dashboard", Middleware.RequireAuth, async (req, res) => {
-    return await Routes.dashboard(req, res, app);
+    await Routes.dashboard(req, res, app);
   });
 
   server.get("/auth/sign-out", async (req, res) => {
@@ -46,7 +46,7 @@ app.prepare().then(() => {
       return app.render(req, res, "/auth/sign-in-error", { session: null });
     }
 
-    return app.render(req, res, "/auth/sign-out", { session });
+    return app.render(req, res, "/auth/sign-out");
   });
 
   server.all("*", (req, res) => {

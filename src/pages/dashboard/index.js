@@ -13,12 +13,16 @@ import Content from "~/src/components/dashboard/Content";
 
 const cookies = new Cookies();
 
-function Dashboard({ session, jwt }) {
-  const { dispatch } = useAppContext();
+function Dashboard({ session = null, jwt = null }) {
+  const {
+    session: { user },
+    dispatch,
+  } = useAppContext();
 
   // Update session user data
   if (session) {
     useEffect(() => {
+      console.log("dashboard user: ", user);
       dispatch({
         type: "updateUser",
         value: { ...session },
@@ -26,7 +30,7 @@ function Dashboard({ session, jwt }) {
     }, [session]);
   }
 
-  // Set cookie
+  // Set cookie if GoogleSignin
   if (jwt) {
     useEffect(() => {
       cookies.set(Constants.session.key, jwt, { path: "/" });
@@ -53,13 +57,29 @@ function Dashboard({ session, jwt }) {
   );
 }
 
-Dashboard.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
+  let session = null;
+  let jwt = null;
+
+  if (ctx.query.session) {
+    session = ctx.query.session;
+  }
+  if (ctx.query.jwt) {
+    jwt = ctx.query.jwt;
+  }
+
   return {
-    error: ctx.err,
-    session: ctx.query.session,
-    jwt: ctx.query.jwt,
-    cookie: ctx.query.cookie,
+    props: { session, jwt },
   };
-};
+}
+
+// Dashboard.getInitialProps = async (ctx) => {
+//   return {
+//     error: ctx.err,
+//     session: ctx.query.session,
+//     jwt: ctx.query.jwt,
+//     cookie: ctx.query.cookie,
+//   };
+// };
 
 export default Dashboard;

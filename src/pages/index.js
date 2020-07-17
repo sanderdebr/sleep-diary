@@ -9,7 +9,7 @@ import Logo from "~/src/components/shared/Logo";
 import { H2 } from "~/src/components/shared/Text";
 import { FormGroup, Input, Button, Error } from "~/src/components/shared/Form";
 
-function Page({ googleURL = null }) {
+function LoginPage({ googleURL = null }) {
   const [auth, setAuth] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
 
@@ -54,7 +54,7 @@ function Page({ googleURL = null }) {
   );
 }
 
-Page.getInitialProps = async (ctx) => {
+LoginPage.getInitialProps = async (ctx) => {
   return {
     googleURL: ctx.query.googleURL,
     session: ctx.query.session,
@@ -62,4 +62,4 @@ Page.getInitialProps = async (ctx) => {
   };
 };
 
-export default Page;
+export default LoginPage;

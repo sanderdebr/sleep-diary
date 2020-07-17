@@ -6,18 +6,13 @@ import ThemeToggle from "./ThemeToggle";
 import { useAppContext } from "~/src/state/hooks";
 
 function Topbar() {
-  const { session } = useAppContext();
-  let name;
-
-  console.log(session);
-
-  if (session.user) {
-    name = session.user.name.split(" ")[0];
-  }
+  const {
+    session: { user },
+  } = useAppContext();
 
   return (
     <StyledTopbar>
-      {<Welcome>Hi, {name}</Welcome>}
+      <Welcome></Welcome>
       <Right>
         <ThemeToggle />
         <TopbarIcon icon="bell" />

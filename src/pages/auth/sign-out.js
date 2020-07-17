@@ -10,7 +10,7 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-function Page(props) {
+function Page() {
   useEffect(() => {
     const jwt = cookies.get(Constants.session.key);
 
@@ -30,13 +30,5 @@ function Page(props) {
     </>
   );
 }
-
-Page.getInitialProps = async (ctx) => {
-  return {
-    error: ctx.err,
-    session: ctx.query.session,
-    jwt: ctx.query.jwt,
-  };
-};
 
 export default Page;
