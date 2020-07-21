@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import moment from "moment";
+
+import * as Actions from "~/src/common/actions";
 
 import { H4 } from "~/src/components/shared/Text";
 import { Number, Textarea } from "~/src/components/shared/Form";
 import ScoreCircle from "~/src/components/dashboard/Data/ScoreCircle";
 
-function Data({ ...props }) {
-  const [today, setToday] = useState({
-    energy: 6,
-    feeling: 7,
-    total_sleep: 400,
-    deep_sleep: 300,
-    activities: "",
-    adjustments: "",
+function Data({ session, todaysActivity, ...props }) {
+  console.log("todaysActivity", todaysActivity);
+
+  const [today, setToday] = useState({ ...todaysActivity });
+
+  // Add activity on every change
+  useEffect(() => {
+    Actions.addActivity(session.id, today);
   });
 
   return (

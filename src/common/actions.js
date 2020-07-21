@@ -45,3 +45,18 @@ export const localSignIn = async (auth) => {
 
   window.location.href = "/dashboard";
 };
+
+export const addActivity = async (id, activity) => {
+  console.log("ADD ACTIVITY: ", id, activity);
+  const options = {
+    method: "POST",
+    headers: getHeaders(),
+    credentials: "include",
+    body: JSON.stringify({ id, activity }),
+  };
+
+  const response = await fetch(`${SERVER_PATH}/api/add-activity`, options);
+  const json = await response.json();
+
+  console.log("RESPONSE ADD ACTIVITY:", json);
+};

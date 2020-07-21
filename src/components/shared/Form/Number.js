@@ -6,6 +6,14 @@ function Number({ state, setState, ...props }) {
     setState({ ...state, [name]: value });
   };
 
+  const add = ({ name = props.name }) => {
+    setState({ ...state, [name]: state[name] + 1 });
+  };
+
+  const subtract = ({ name = props.name }) => {
+    setState({ ...state, [name]: state[name] - 1 });
+  };
+
   return (
     <Wrapper>
       <Label>{props.placeholder}</Label>
@@ -16,8 +24,8 @@ function Number({ state, setState, ...props }) {
           {...props}
         ></StyledNumber>
         <Controls>
-          <Add>+</Add>
-          <Subtract>-</Subtract>
+          <Add onClick={add}>+</Add>
+          <Subtract onClick={subtract}>-</Subtract>
         </Controls>
       </Right>
     </Wrapper>

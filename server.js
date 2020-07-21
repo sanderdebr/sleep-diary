@@ -22,6 +22,10 @@ app.prepare().then(() => {
     return await Routes.api.signIn(req, res);
   });
 
+  server.post("/api/add-activity", async (req, res) => {
+    return await Routes.api.addActivity(req, res);
+  });
+
   server.get("/", async (req, res) => {
     return await Routes.signIn(req, res, app);
   });

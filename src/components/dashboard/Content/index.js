@@ -1,11 +1,17 @@
 import styled from "styled-components";
+import moment from "moment";
 
 import { H2 } from "~/src/components/shared/Text";
 import Topbar from "~/src/components/dashboard/Topbar";
 import Data from "~/src/components/dashboard/Data";
 import Graphs from "~/src/components/dashboard/Graphs";
 
-function Content({ className }) {
+function Content({ className, session, activities }) {
+  // Check activity with no day difference
+  const todaysActivity = activities.filter(
+    (activity) => moment().diff(activity.day, "days") === 0
+  );
+
   return (
     <StyledContent>
       <Topbar />
@@ -13,12 +19,16 @@ function Content({ className }) {
         <TopSection>
           <H2 bottomMargin>Dashboard</H2>
           <Article>
-            <Today className={className} />
+            <Today
+              className={className}
+              session={session}
+              todaysActivity={todaysActivity ? todaysActivity[0] : null}
+            />
           </Article>
         </TopSection>
         <BottomSection>
           <Article>
-            <Graphs />
+            <Graphs activities={activities} />
           </Article>
         </BottomSection>
       </StyledMain>

@@ -1,10 +1,9 @@
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
 
-import { useAppContext } from "~/src/state/hooks";
-
 import * as Constants from "~/src/common/constants";
-// import * as Database from "~/src/common/database";
+
+import { useAppContext } from "~/src/state/hooks";
 
 import Head from "~/src/components/shared/Head";
 import Box from "~/src/components/shared/Box";
@@ -13,16 +12,12 @@ import Content from "~/src/components/dashboard/Content";
 
 const cookies = new Cookies();
 
-function Dashboard({ session = null, jwt = null }) {
-  const {
-    session: { user },
-    dispatch,
-  } = useAppContext();
+function Dashboard({ session = null, jwt = null, activities = null }) {
+  const { dispatch } = useAppContext();
 
   // Update session user data
   if (session) {
     useEffect(() => {
-      console.log("dashboard user: ", user);
       dispatch({
         type: "updateUser",
         value: { ...session },
@@ -39,27 +34,27 @@ function Dashboard({ session = null, jwt = null }) {
   }
 
   // Get activities
-  // if (!session.activities && session) {
-  //   useEffect(async () => {
-  //     const activities = 5; //await Database.getActivities({ id: session.user.id });
-  //     dispatch({ type: "getActivities", value: activities });
-  //   }, [session]);
-  // }
+  if (activities) {
+    useEffect(() => {
+      dispatch({ type: "updateActivities", value: activities });
+    }, [activities]);
+  }
 
   return (
     <>
       <Head title="Home | SleepDiary" />
       <Box noPadding flex>
         <Sidebar />
-        <Content session={session} />
+        <Content session={session} activities={activities} />
       </Box>
     </>
   );
 }
 
 export async function getServerSideProps(ctx) {
-  let session = null;
-  let jwt = null;
+  let session = null,
+    jwt = null,
+    activities = null;
 
   if (ctx.query.session) {
     session = ctx.query.session;
@@ -67,19 +62,13 @@ export async function getServerSideProps(ctx) {
   if (ctx.query.jwt) {
     jwt = ctx.query.jwt;
   }
+  if (ctx.query.activities) {
+    activities = ctx.query.activities;
+  }
 
   return {
-    props: { session, jwt },
+    props: { session, jwt, activities },
   };
 }
-
-// Dashboard.getInitialProps = async (ctx) => {
-//   return {
-//     error: ctx.err,
-//     session: ctx.query.session,
-//     jwt: ctx.query.jwt,
-//     cookie: ctx.query.cookie,
-//   };
-// };
 
 export default Dashboard;

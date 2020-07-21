@@ -17,7 +17,7 @@ export const reducer = (state, action) => {
       return { ...state, theme: newTheme };
     case "updateUser":
       return { ...state, session: { ...state.session, user: action.value } };
-    case "getActivities":
+    case "updateActivities":
       return {
         ...state,
         session: { ...state.session, activities: action.value },

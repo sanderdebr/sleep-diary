@@ -36,6 +36,7 @@ const createDataTable = db.schema.hasTable("data").then((exists) => {
   if (!exists) {
     return db.schema.createTable("data", (table) => {
       table.increments("id");
+      table.integer("userId");
       table.timestamp("created_at").defaultTo(db.fn.now());
       table.timestamp("updated_at").defaultTo(db.fn.now());
       table.integer("energy");
@@ -44,7 +45,7 @@ const createDataTable = db.schema.hasTable("data").then((exists) => {
       table.integer("deep_sleep");
       table.string("activities");
       table.string("adjustments");
-      table.timestamp("day").defaultTo(db.fn.now());
+      table.string("day").defaultTo(db.fn.now());
     });
   } else {
     console.log("Table data already exists");

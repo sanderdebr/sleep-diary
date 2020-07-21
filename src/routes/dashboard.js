@@ -1,4 +1,5 @@
 import * as Session from "~/src/common/session";
+import * as Database from "~/src/common/database";
 
 export default async (req, res, app) => {
   const { session } = await Session.getSession(req);
@@ -7,5 +8,7 @@ export default async (req, res, app) => {
     return app.render(req, res, "/auth/sign-in-error/", { session: null });
   }
 
-  return app.render(req, res, "/dashboard", { session });
+  const activities = await Database.getActivities({ id: session.id });
+
+  return app.render(req, res, "/dashboard", { session, activities });
 };

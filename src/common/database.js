@@ -63,27 +63,63 @@ export const createUser = async ({
   });
 };
 
-// export const getActivities = async ({ id }) => {
-//   return await runQuery({
-//     label: "GET_ACTIVITIES",
-//     queryFn: async () => {
-//       const query = await db("data").where("id", id);
+export const getActivities = async ({ id = null }) => {
+  return await runQuery({
+    label: "GET_ACTIVITIES",
+    queryFn: async () => {
+      const query = await db("data").where("userId", id);
 
-//       if (!query || query.error) {
-//         return null;
-//       }
+      if (!query || query.error) {
+        return null;
+      }
 
-//       if (query[0]) {
-//         return query[0];
-//       }
+      if (query) {
+        return query;
+      }
 
-//       return null;
-//     },
-//     errorFn: async (err) => {
-//       return {
-//         error: "GET_ACTIVITIES",
-//         source: err,
-//       };
-//     },
-//   });
-// };
+      return null;
+    },
+    errorFn: async (err) => {
+      return {
+        error: "GET_ACTIVITIES",
+        source: err,
+      };
+    },
+  });
+};
+
+export const addActivity = async ({ userId = null, activity = null }) => {
+  return await runQuery({
+    label: "ADD_ACTIVITY",
+    queryFn: async () => {
+      const query = await db("data").insert([
+        {
+          userId,
+          energy: activity.energy,
+          feeling: activity.feeling,
+          total_sleep: activity.total_sleep,
+          deep_sleep: activity.deep_sleep,
+          activities: activity.activities,
+          adjustments: activity.adjustments,
+          day: activity.day,
+        },
+      ]);
+
+      if (!query || query.error) {
+        return null;
+      }
+
+      if (query[0]) {
+        return query[0];
+      }
+
+      return null;
+    },
+    errorFn: async (err) => {
+      return {
+        error: "ADD_ACTIVITY",
+        source: err,
+      };
+    },
+  });
+};
