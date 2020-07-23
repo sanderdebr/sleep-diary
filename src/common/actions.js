@@ -36,7 +36,7 @@ export const localSignIn = async (auth) => {
   const json = await response.json();
 
   if (json.error) {
-    return json.error;
+    return json;
   }
 
   if (json.token) {
@@ -46,17 +46,56 @@ export const localSignIn = async (auth) => {
   window.location.href = "/dashboard";
 };
 
-export const addActivity = async (id, activity) => {
-  console.log("ADD ACTIVITY: ", id, activity);
+export const getActivities = async (userId) => {
   const options = {
     method: "POST",
     headers: getHeaders(),
     credentials: "include",
-    body: JSON.stringify({ id, activity }),
+    body: JSON.stringify({ userId }),
+  };
+
+  const response = await fetch(`${SERVER_PATH}/api/get-activities`, options);
+  const json = await response.json();
+
+  if (json.error) {
+    return json.error;
+  }
+
+  return json;
+};
+
+export const addActivity = async (userId, activity) => {
+  const options = {
+    method: "POST",
+    headers: getHeaders(),
+    credentials: "include",
+    body: JSON.stringify({ userId, activity }),
   };
 
   const response = await fetch(`${SERVER_PATH}/api/add-activity`, options);
   const json = await response.json();
 
-  console.log("RESPONSE ADD ACTIVITY:", json);
+  if (json.error) {
+    return json.error;
+  }
+
+  return json;
+};
+
+export const updateActivity = async (userId, activity) => {
+  const options = {
+    method: "POST",
+    headers: getHeaders(),
+    credentials: "include",
+    body: JSON.stringify({ userId, activity }),
+  };
+
+  const response = await fetch(`${SERVER_PATH}/api/update-activity`, options);
+  const json = await response.json();
+
+  if (json.error) {
+    return json.error;
+  }
+
+  return json;
 };

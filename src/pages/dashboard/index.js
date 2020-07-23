@@ -2,6 +2,7 @@ import Cookies from "universal-cookie";
 import { useEffect } from "react";
 
 import * as Constants from "~/src/common/constants";
+import * as Actions from "~/src/common/actions";
 
 import { useAppContext } from "~/src/state/hooks";
 
@@ -12,8 +13,8 @@ import Content from "~/src/components/dashboard/Content";
 
 const cookies = new Cookies();
 
-function Dashboard({ session = null, jwt = null, activities = null }) {
-  const { dispatch } = useAppContext();
+function Dashboard({ session = null, jwt = null }) {
+  const { activities, dispatch } = useAppContext();
 
   // Update session user data
   if (session) {
@@ -33,12 +34,15 @@ function Dashboard({ session = null, jwt = null, activities = null }) {
     }, []);
   }
 
-  // Get activities
-  if (activities) {
-    useEffect(() => {
-      dispatch({ type: "updateActivities", value: activities });
-    }, [activities]);
-  }
+  // Get activities if none in app state context yet
+  useEffect(() => {
+    const getActivities = async () => {
+      const response = await Actions.getActivities(session.id);
+      dispatch({ type: "updateActivities", value: response.result });
+    };
+
+    getActivities();
+  }, []);
 
   return (
     <>
@@ -53,8 +57,7 @@ function Dashboard({ session = null, jwt = null, activities = null }) {
 
 export async function getServerSideProps(ctx) {
   let session = null,
-    jwt = null,
-    activities = null;
+    jwt = null;
 
   if (ctx.query.session) {
     session = ctx.query.session;
@@ -62,12 +65,9 @@ export async function getServerSideProps(ctx) {
   if (ctx.query.jwt) {
     jwt = ctx.query.jwt;
   }
-  if (ctx.query.activities) {
-    activities = ctx.query.activities;
-  }
 
   return {
-    props: { session, jwt, activities },
+    props: { session, jwt },
   };
 }
 

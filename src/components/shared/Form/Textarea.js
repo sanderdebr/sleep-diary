@@ -1,15 +1,27 @@
 import styled from "styled-components";
 
-function Textarea({ state = "", setState, ...props }) {
-  const handleChange = ({ target }) => {
+function Textarea({
+  state = "",
+  setState,
+  draftState,
+  setDraftState,
+  ...props
+}) {
+  const handleBlur = ({ target }) => {
     const { name, value } = target;
     setState({ ...state, [name]: value });
+  };
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    setDraftState({ ...state, [name]: value });
   };
 
   return (
     <StyledTextarea
       onChange={handleChange}
-      value={state[props.name]}
+      onBlur={handleBlur}
+      value={draftState[props.temp]}
       {...props}
     />
   );

@@ -16,8 +16,8 @@ function LoginPage({ googleURL = null }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const trySignIn = await Actions.localSignIn(auth);
-    if (trySignIn) {
-      setError(trySignIn);
+    if (trySignIn.error) {
+      setError(trySignIn.error);
     }
   };
 

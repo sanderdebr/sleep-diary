@@ -30,7 +30,11 @@ export const getSession = async (req, existingToken = undefined) => {
     session = null;
   }
 
-  let { id, name, email, verified } = session;
+  if (session) {
+    let { id, name, email, verified } = session;
 
-  return { session: { id, name, email, verified } };
+    return { session: { id, name, email, verified } };
+  } else {
+    return { session };
+  }
 };

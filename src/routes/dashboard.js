@@ -8,7 +8,5 @@ export default async (req, res, app) => {
     return app.render(req, res, "/auth/sign-in-error/", { session: null });
   }
 
-  const activities = await Database.getActivities({ id: session.id });
-
-  return app.render(req, res, "/dashboard", { session, activities });
+  return app.render(req, res, "/dashboard", { session });
 };

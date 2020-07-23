@@ -8,15 +8,56 @@ import { H4 } from "~/src/components/shared/Text";
 import { Number, Textarea } from "~/src/components/shared/Form";
 import ScoreCircle from "~/src/components/dashboard/Data/ScoreCircle";
 
+let defaultActivity = {
+  _added: false,
+  created_at: moment(),
+  updated_at: moment(),
+  energy: 0,
+  feeling: 0,
+  total_sleep: 0,
+  deep_sleep: 0,
+  activities: "",
+  adjustments: "",
+  day: moment(),
+};
+
 function Data({ session, todaysActivity, ...props }) {
+  const [today, setToday] = useState(todaysActivity || defaultActivity);
+  const [draftState, setDraftState] = useState(
+    todaysActivity || defaultActivity
+  );
+
+  const updateActivity = async () => {
+    const response = await Actions.updateActivity(session.id, today);
+    if (response.error) {
+      console.log(response.error);
+    }
+  };
+
+  const addActivity = async () => {
+    const response = await Actions.addActivity(session.id, today);
+    if (response.error) {
+      console.log(response.error);
+    }
+  };
+
   console.log("todaysActivity", todaysActivity);
 
-  const [today, setToday] = useState({ ...todaysActivity });
-
-  // Add activity on every change
+  // If activity is already set for today
   useEffect(() => {
-    Actions.addActivity(session.id, today);
-  });
+    setToday((prevState) => {
+      if (!prevState._added) {
+        console.log("added");
+        addActivity();
+      }
+      return { ...prevState, _added: true };
+    });
+  }, []);
+
+  // Update activity on change
+  useEffect(() => {
+    updateActivity();
+  }, [today]);
 
   return (
     <DataStyles {...props}>
@@ -60,12 +101,16 @@ function Data({ session, todaysActivity, ...props }) {
         <Textarea
           placeholder="Activities during the day..."
           name="activities"
+          draftState={draftState}
+          setDraftState={setDraftState}
           state={today}
           setState={setToday}
         />
         <Textarea
           placeholder="Adjustments..."
           name="adjustments"
+          draftState={draftState}
+          setDraftState={setDraftState}
           state={today}
           setState={setToday}
         />

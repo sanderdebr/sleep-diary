@@ -63,11 +63,11 @@ export const createUser = async ({
   });
 };
 
-export const getActivities = async ({ id = null }) => {
+export const getActivities = async ({ userId = null }) => {
   return await runQuery({
     label: "GET_ACTIVITIES",
     queryFn: async () => {
-      const query = await db("data").where("userId", id);
+      const query = await db("data").where("userId", userId);
 
       if (!query || query.error) {
         return null;
@@ -109,15 +109,45 @@ export const addActivity = async ({ userId = null, activity = null }) => {
         return null;
       }
 
-      if (query[0]) {
-        return query[0];
+      if (query) {
+        return query;
       }
-
-      return null;
     },
     errorFn: async (err) => {
       return {
         error: "ADD_ACTIVITY",
+        source: err,
+      };
+    },
+  });
+};
+
+export const updateActivity = async ({ userId = null, activity = null }) => {
+  return await runQuery({
+    label: "UPDATE_ACTIVITY",
+    queryFn: async () => {
+      const query = await db("data")
+        .where({ userId, day: activity.day })
+        .update({
+          energy: activity.energy,
+          feeling: activity.feeling,
+          total_sleep: activity.total_sleep,
+          deep_sleep: activity.deep_sleep,
+          activities: activity.activities,
+          adjustments: activity.adjustments,
+        });
+
+      if (!query || query.error) {
+        return null;
+      }
+
+      if (query) {
+        return query;
+      }
+    },
+    errorFn: async (err) => {
+      return {
+        error: "UPDATE_ACTIVITY",
         source: err,
       };
     },

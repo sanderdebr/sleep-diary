@@ -18,10 +18,7 @@ export const reducer = (state, action) => {
     case "updateUser":
       return { ...state, session: { ...state.session, user: action.value } };
     case "updateActivities":
-      return {
-        ...state,
-        session: { ...state.session, activities: action.value },
-      };
+      return { ...state, activities: action.value };
     default:
       throw new Error();
   }
