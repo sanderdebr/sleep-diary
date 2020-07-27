@@ -13,8 +13,13 @@ import Content from "~/src/components/dashboard/Content";
 
 const cookies = new Cookies();
 
-function Dashboard({ session = null, jwt = null }) {
-  const { activities, dispatch } = useAppContext();
+function Dashboard({ session, jwt, activities }) {
+  const { dispatch } = useAppContext();
+
+  // Update activities based on DB API result
+  useEffect(() => {
+    dispatch({ type: "updateActivities", value: activities.result });
+  }, [activities]);
 
   // Update session user data
   if (session) {
@@ -34,41 +39,29 @@ function Dashboard({ session = null, jwt = null }) {
     }, []);
   }
 
-  // Get activities if none in app state context yet
-  useEffect(() => {
-    const getActivities = async () => {
-      const response = await Actions.getActivities(session.id);
-      dispatch({ type: "updateActivities", value: response.result });
-    };
-
-    getActivities();
-  }, []);
-
   return (
     <>
       <Head title="Home | SleepDiary" />
       <Box noPadding flex>
         <Sidebar />
-        <Content session={session} activities={activities} />
+        <Content session={session} />
       </Box>
     </>
   );
 }
 
-export async function getServerSideProps(ctx) {
-  let session = null,
-    jwt = null;
+export const getServerSideProps = async (ctx) => {
+  let session = ctx.query.session || null;
+  let jwt = ctx.query.jwt || null;
+  let activities = null;
 
-  if (ctx.query.session) {
-    session = ctx.query.session;
-  }
-  if (ctx.query.jwt) {
-    jwt = ctx.query.jwt;
+  if (session) {
+    activities = await Actions.getActivities(session.id, ctx.req);
   }
 
   return {
-    props: { session, jwt },
+    props: { session, jwt, activities },
   };
-}
+};
 
 export default Dashboard;

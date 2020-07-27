@@ -46,7 +46,7 @@ export const localSignIn = async (auth) => {
   window.location.href = "/dashboard";
 };
 
-export const getActivities = async (userId) => {
+export const getActivities = async (userId, req) => {
   const options = {
     method: "POST",
     headers: getHeaders(),
@@ -54,7 +54,8 @@ export const getActivities = async (userId) => {
     body: JSON.stringify({ userId }),
   };
 
-  const response = await fetch(`${SERVER_PATH}/api/get-activities`, options);
+  const baseUrl = req ? `${req.protocol}://${req.get("Host")}` : "";
+  const response = await fetch(`${baseUrl}/api/get-activities`, options);
   const json = await response.json();
 
   if (json.error) {

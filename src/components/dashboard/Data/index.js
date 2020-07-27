@@ -3,13 +3,13 @@ import styled from "styled-components";
 import moment from "moment";
 
 import * as Actions from "~/src/common/actions";
+import { useAppContext } from "~/src/state/hooks";
 
 import { H4 } from "~/src/components/shared/Text";
 import { Number, Textarea } from "~/src/components/shared/Form";
 import ScoreCircle from "~/src/components/dashboard/Data/ScoreCircle";
 
 let defaultActivity = {
-  _added: false,
   created_at: moment(),
   updated_at: moment(),
   energy: 0,
@@ -21,11 +21,11 @@ let defaultActivity = {
   day: moment(),
 };
 
-function Data({ session, todaysActivity, ...props }) {
-  const [today, setToday] = useState(todaysActivity || defaultActivity);
-  const [draftState, setDraftState] = useState(
-    todaysActivity || defaultActivity
-  );
+function Data({ session, ...props }) {
+  const [today, setToday] = useState(defaultActivity);
+  const [draftState, setDraftState] = useState(defaultActivity);
+
+  const { activities } = useAppContext();
 
   const updateActivity = async () => {
     const response = await Actions.updateActivity(session.id, today);
@@ -41,18 +41,20 @@ function Data({ session, todaysActivity, ...props }) {
     }
   };
 
-  console.log("todaysActivity", todaysActivity);
-
-  // If activity is already set for today
+  // Check if today is already entered
   useEffect(() => {
-    setToday((prevState) => {
-      if (!prevState._added) {
-        console.log("added");
+    if (activities) {
+      const existingRecord = activities.filter(
+        (activity) => moment().diff(activity.day, "days") === 0
+      );
+      console.log(existingRecord);
+      if (!existingRecord.length) {
         addActivity();
+      } else {
+        setToday(existingRecord[0]);
       }
-      return { ...prevState, _added: true };
-    });
-  }, []);
+    }
+  }, [activities]);
 
   // Update activity on change
   useEffect(() => {

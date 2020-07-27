@@ -1,5 +1,4 @@
 import * as Session from "~/src/common/session";
-import * as Database from "~/src/common/database";
 
 export default async (req, res, app) => {
   const { session } = await Session.getSession(req);

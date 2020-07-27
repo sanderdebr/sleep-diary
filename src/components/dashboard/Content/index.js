@@ -6,20 +6,7 @@ import Topbar from "~/src/components/dashboard/Topbar";
 import Data from "~/src/components/dashboard/Data";
 import Graphs from "~/src/components/dashboard/Graphs";
 
-function Content({ className, session, activities = [] }) {
-  // Check activity with no day difference
-  let todaysActivity = activities.filter(
-    (activity) => moment().diff(activity.day, "days") === 0
-  );
-
-  // If not set
-  if (!todaysActivity.length) {
-    todaysActivity = null;
-    // Else grab record
-  } else {
-    todaysActivity = todaysActivity[0];
-  }
-
+function Content({ className, session }) {
   return (
     <StyledContent>
       <Topbar />
@@ -27,16 +14,12 @@ function Content({ className, session, activities = [] }) {
         <TopSection>
           <H2 bottomMargin>Dashboard</H2>
           <Article>
-            <Today
-              className={className}
-              session={session}
-              todaysActivity={todaysActivity}
-            />
+            <Today className={className} session={session} />
           </Article>
         </TopSection>
         <BottomSection>
           <Article>
-            <Graphs activities={activities} />
+            <Graphs />
           </Article>
         </BottomSection>
       </StyledMain>
