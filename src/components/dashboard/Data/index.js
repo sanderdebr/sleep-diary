@@ -7,37 +7,29 @@ import { useAppContext } from "~/src/state/hooks";
 
 import { H4 } from "~/src/components/shared/Text";
 import { Number, Textarea } from "~/src/components/shared/Form";
+import { defaultActivity } from "~/src/common/constants";
 import ScoreCircle from "~/src/components/dashboard/Data/ScoreCircle";
 
-let defaultActivity = {
-  created_at: moment(),
-  updated_at: moment(),
-  energy: 0,
-  feeling: 0,
-  total_sleep: 0,
-  deep_sleep: 0,
-  activities: "",
-  adjustments: "",
-  day: moment(),
-};
-
 function Data({ session, ...props }) {
+  const { activities, dispatch } = useAppContext();
+
   const [today, setToday] = useState(defaultActivity);
+  // Draft state for textarea only update DB onBlur
   const [draftState, setDraftState] = useState(defaultActivity);
 
-  const { activities } = useAppContext();
-
-  const updateActivity = async () => {
-    const response = await Actions.updateActivity(session.id, today);
-    if (response.error) {
-      console.log(response.error);
+  const addActivity = async () => {
+    dispatch({ type: "toggleLoading", value: true });
+    let result = await Actions.addActivity(session.id, today);
+    if (!result.error) {
+      dispatch({ type: "toggleLoading", value: false });
     }
   };
 
-  const addActivity = async () => {
-    const response = await Actions.addActivity(session.id, today);
-    if (response.error) {
-      console.log(response.error);
+  const updateActivity = async () => {
+    dispatch({ type: "toggleLoading", value: true });
+    let result = await Actions.updateActivity(session.id, today);
+    if (!result.error) {
+      dispatch({ type: "toggleLoading", value: false });
     }
   };
 
@@ -47,16 +39,18 @@ function Data({ session, ...props }) {
       const existingRecord = activities.filter(
         (activity) => moment().diff(activity.day, "days") === 0
       );
-      console.log(existingRecord);
+      // If not, add activity in DB
       if (!existingRecord.length) {
         addActivity();
       } else {
+        // If so, update activity and draft state
         setToday(existingRecord[0]);
+        setDraftState(existingRecord[0]);
       }
     }
   }, [activities]);
 
-  // Update activity on change
+  // Update activity on change in DB
   useEffect(() => {
     updateActivity();
   }, [today]);

@@ -5,9 +5,9 @@ export const initialState = {
   theme: theme.day,
   session: {
     user: null,
-    activities: null,
-    loading: false,
   },
+  activities: null,
+  loading: null,
 };
 
 export default initialState;

@@ -16,9 +16,11 @@ export const reducer = (state, action) => {
       persistTheme(newTheme);
       return { ...state, theme: newTheme };
     case "updateUser":
-      return { ...state, session: { ...state.session, user: action.value } };
+      return { ...state, user: action.value };
     case "updateActivities":
       return { ...state, activities: action.value };
+    case "toggleLoading":
+      return { ...state, loading: action.value };
     default:
       throw new Error();
   }

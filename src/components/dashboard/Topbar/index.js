@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 import Icon from "~/src/components/dashboard/Icon";
 import ThemeToggle from "./ThemeToggle";
+import Spinner from "./Spinner";
 
 import { useAppContext } from "~/src/state/hooks";
 
 function Topbar() {
-  const {
-    session: { user },
-  } = useAppContext();
+  const { user, loading } = useAppContext();
 
   return (
     <StyledTopbar>
-      <Welcome></Welcome>
+      <Welcome>{user && `Hi, ${user.name}`}</Welcome>
       <Right>
+        {loading && <Spinner />}
         <ThemeToggle />
         <TopbarIcon icon="bell" />
       </Right>

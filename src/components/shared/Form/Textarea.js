@@ -21,7 +21,7 @@ function Textarea({
     <StyledTextarea
       onChange={handleChange}
       onBlur={handleBlur}
-      value={draftState[props.temp]}
+      value={draftState[props.name]}
       {...props}
     />
   );
