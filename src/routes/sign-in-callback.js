@@ -1,5 +1,5 @@
 import * as Credentials from "~/src/common/credentials";
-import * as Database from "~/src/common/database";
+import * as Database from "~/src/common/database/user";
 
 import JWT from "jsonwebtoken";
 import BCrypt from "bcrypt";

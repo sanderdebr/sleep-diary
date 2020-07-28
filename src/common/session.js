@@ -1,6 +1,6 @@
 import * as Credentials from "./credentials";
 import * as Utilities from "./utilities";
-import * as Database from "./database";
+import * as Database from "./database/user";
 
 import JWT from "jsonwebtoken";
 

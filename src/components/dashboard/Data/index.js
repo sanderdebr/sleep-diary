@@ -39,6 +39,7 @@ function Data({ session, ...props }) {
       const existingRecord = activities.filter(
         (activity) => moment().diff(activity.day, "days") === 0
       );
+      console.log(existingRecord);
       // If not, add activity in DB
       if (!existingRecord.length) {
         addActivity();

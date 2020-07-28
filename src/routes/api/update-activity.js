@@ -1,4 +1,4 @@
-import * as Database from "~/src/common/database";
+import * as Database from "~/src/common/database/activity";
 
 export default async (req, res) => {
   let result = await Database.updateActivity({

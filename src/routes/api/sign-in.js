@@ -1,5 +1,5 @@
 import * as Utilities from "~/src/common/utilities";
-import * as Database from "~/src/common/database";
+import * as Database from "~/src/common/database/user";
 import * as Credentials from "~/src/common/credentials";
 
 import BCrypt from "bcrypt";

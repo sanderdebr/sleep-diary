@@ -19,6 +19,7 @@ const ContainerWrapper = styled.main`
   margin-top: 2em;
   margin-bottom: 2em;
   border-radius: ${({ theme }) => theme.general.borderRadius}px;
+  background: ${({ theme }) => theme.palette.bg};
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     max-width: ${({ path }) =>
