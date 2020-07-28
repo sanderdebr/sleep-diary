@@ -39,7 +39,6 @@ function Data({ session, ...props }) {
       const existingRecord = activities.filter(
         (activity) => moment().diff(activity.day, "days") === 0
       );
-      console.log(existingRecord);
       // If not, add activity in DB
       if (!existingRecord.length) {
         addActivity();
@@ -121,23 +120,37 @@ const DataStyles = styled.section`
   height: 100%;
   padding: ${({ theme }) => theme.spacing.inner}px;
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   justify-content: center;
+  flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    flex-direction: row;
+  }
 `;
 
 const Left = styled.div`
-  width: 800px;
+  width: 100%;
   height: 100%;
   padding: ${({ theme }) => theme.spacing.inner}px;
   display: flex;
   text-align: center;
   flex-direction: row;
   border-right: 1px solid ${({ theme }) => theme.palette.bgColor};
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    width: 800px;
+  }
 `;
 
 const Right = styled.div`
   width: 100%;
+  height: 100%;
   padding: 0 ${({ theme }) => theme.spacing.inner}px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const Score = styled.div`

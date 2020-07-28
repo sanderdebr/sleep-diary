@@ -59,7 +59,12 @@ const StyledSpan = styled.span`
 `;
 
 const StyledText = styled.div`
+  display: none;
   margin-right: 1.5rem;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    display: flex;
+  }
 `;
 
 const StyledInput = styled.input`

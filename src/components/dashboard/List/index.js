@@ -45,11 +45,11 @@ const StyledList = styled.ul`
 `;
 
 const Logout = styled(ListItem)`
-  color: ${({ theme }) => theme.palette.secondary};
+  color: ${({ theme }) => theme.palette.primary};
   position: ${({ open }) => (open ? "inherit" : "absolute")};
   bottom: 2rem;
   svg {
-    fill: ${({ theme }) => theme.palette.secondary};
+    fill: ${({ theme }) => theme.palette.primary};
   }
 `;
 

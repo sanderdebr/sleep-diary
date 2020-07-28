@@ -47,9 +47,10 @@ const StyledMain = styled.main`
 const TopSection = styled.section`
   width: 100%;
   height: 325px;
-  padding: ${({ theme }) => theme.spacing.gutter}px;
+  padding: ${({ theme }) => theme.spacing.gutter / 2}px;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    padding: ${({ theme }) => theme.spacing.gutter}px;
     height: 325px;
   }
 `;
@@ -61,7 +62,6 @@ const BottomSection = styled.section`
 
 const Article = styled.article`
   background: transparent;
-  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

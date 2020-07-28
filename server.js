@@ -14,6 +14,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  server.use(Middleware.CORS);
   server.use("/public", express.static("public"));
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: false }));
@@ -46,7 +47,6 @@ app.prepare().then(() => {
     return app.render(req, res, "/auth/sign-in-error", { session: null });
   });
 
-  //TODO: add protected routes
   server.get("/dashboard", Middleware.RequireAuth, async (req, res) => {
     await Routes.dashboard(req, res, app);
   });

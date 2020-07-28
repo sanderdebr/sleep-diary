@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { rotate } from "~/src/common/styles/animations";
 
 import Icon from "~/src/components/dashboard/Icon";
 
@@ -16,15 +17,6 @@ const SpinnerStyles = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 1.5rem;
-`;
-
-const rotate = keyframes`
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 `;
 
 const SpinnerIcon = styled(Icon)`
