@@ -18,11 +18,13 @@ export const reducer = (state, action) => {
     case "updateUser":
       return { ...state, user: action.value };
     case "updateActivities":
-      return { ...state, activities: action.value };
+      return { ...state, activities: action.value, loading: false };
+    case "syncActivities":
+      return state;
     case "toggleLoading":
       return { ...state, loading: action.value };
     default:
-      throw new Error();
+      return state;
   }
 };
 

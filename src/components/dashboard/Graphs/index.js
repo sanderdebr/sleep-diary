@@ -11,57 +11,17 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import moment from "moment";
+
+import { useAppContext } from "~/src/state/hooks";
 
 import { H4 } from "~/src/components/shared/Text";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
-
 function Graphs() {
+  const { activities } = useAppContext();
   const graphBox = useRef();
   const [chart, setChart] = useState({ width: 300, height: 200 });
+  const [data, setData] = useState([]);
 
   const handleResize = () => {
     const { offsetWidth, offsetHeight } = graphBox.current;
@@ -69,6 +29,22 @@ function Graphs() {
     let height = offsetHeight - 100;
     return setChart({ width, height });
   };
+
+  useEffect(() => {
+    if (activities) {
+      let newData = activities.map((activity) => {
+        const { day, deep_sleep, total_sleep, energy } = activity;
+        return {
+          day: moment(day).date().toString(),
+          "Deep sleep": deep_sleep,
+          "Total sleep": total_sleep,
+          Energy: energy,
+        };
+      });
+
+      setData(newData);
+    }
+  }, [activities]);
 
   useEffect(() => {
     handleResize();
@@ -85,36 +61,33 @@ function Graphs() {
         <H4>Deep sleep</H4>
         <BarChart width={chart.width} height={chart.height} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="day" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-          <Bar dataKey="uv" fill="#82ca9d" />
+          <Bar dataKey="Deep sleep" fill="#8884d8" />
         </BarChart>
       </Graph>
       <Graph ref={graphBox}>
         <H4>Total sleep</H4>
         <BarChart width={chart.width} height={chart.height} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="day" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-          <Bar dataKey="uv" fill="#82ca9d" />
+          <Bar dataKey="Total sleep" fill="#82ca9d" />
         </BarChart>
       </Graph>
       <Graph ref={graphBox}>
         <H4>Energy levels</H4>
         <BarChart width={chart.width} height={chart.height} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="day" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-          <Bar dataKey="uv" fill="#82ca9d" />
+          <Bar dataKey="Energy" fill="#8884d8" />
         </BarChart>
       </Graph>
     </Wrapper>

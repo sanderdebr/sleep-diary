@@ -13,13 +13,22 @@ import Content from "~/src/components/dashboard/Content";
 
 const cookies = new Cookies();
 
-function Dashboard({ session, jwt, activities }) {
+function Dashboard({ session, jwt }) {
   const { dispatch } = useAppContext();
 
-  // Update activities based on DB API result
+  // Update activities
   useEffect(() => {
-    dispatch({ type: "updateActivities", value: activities.result });
-  }, [activities]);
+    const fetchActivities = async () => {
+      dispatch({ type: "toggleLoading", value: true });
+
+      let query = await Actions.getActivities(session.id);
+      if (!query.error) {
+        dispatch({ type: "updateActivities", value: query.result });
+      }
+    };
+
+    fetchActivities();
+  }, []);
 
   // Update session user data
   if (session) {
@@ -53,14 +62,9 @@ function Dashboard({ session, jwt, activities }) {
 export const getServerSideProps = async (ctx) => {
   let session = ctx.query.session || null;
   let jwt = ctx.query.jwt || null;
-  let activities = null;
-
-  if (session) {
-    activities = await Actions.getActivities(session.id, ctx.req);
-  }
 
   return {
-    props: { session, jwt, activities },
+    props: { session, jwt },
   };
 };
 

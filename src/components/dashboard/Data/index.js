@@ -11,7 +11,7 @@ import { defaultActivity } from "~/src/common/constants";
 import ScoreCircle from "~/src/components/dashboard/Data/ScoreCircle";
 
 function Data({ session, ...props }) {
-  const { activities, dispatch } = useAppContext();
+  const { dispatch } = useAppContext();
 
   const [today, setToday] = useState(defaultActivity);
   // Draft state for textarea only update DB onBlur
@@ -20,23 +20,34 @@ function Data({ session, ...props }) {
   const addActivity = async () => {
     dispatch({ type: "toggleLoading", value: true });
     let result = await Actions.addActivity(session.id, today);
-    if (!result.error) {
-      dispatch({ type: "toggleLoading", value: false });
+
+    let query = await Actions.getActivities(session.id);
+    if (!query.error && !result.error) {
+      dispatch({ type: "updateActivities", value: query.result });
     }
   };
 
   const updateActivity = async () => {
     dispatch({ type: "toggleLoading", value: true });
     let result = await Actions.updateActivity(session.id, today);
-    if (!result.error) {
-      dispatch({ type: "toggleLoading", value: false });
+
+    let query = await Actions.getActivities(session.id);
+    if (!query.error && !result.error) {
+      dispatch({ type: "updateActivities", value: query.result });
     }
   };
 
   // Check if today is already entered
   useEffect(() => {
-    if (activities) {
-      const existingRecord = activities.filter(
+    const getActivities = async () => {
+      dispatch({ type: "toggleLoading", value: true });
+
+      let query = await Actions.getActivities(session.id);
+      if (!query.error) {
+        dispatch({ type: "updateActivities", value: query.result });
+      }
+
+      const existingRecord = query.result.filter(
         (activity) => moment().diff(activity.day, "days") === 0
       );
       // If not, add activity in DB
@@ -47,8 +58,10 @@ function Data({ session, ...props }) {
         setToday(existingRecord[0]);
         setDraftState(existingRecord[0]);
       }
-    }
-  }, [activities]);
+    };
+
+    getActivities();
+  }, []);
 
   // Update activity on change in DB
   useEffect(() => {
