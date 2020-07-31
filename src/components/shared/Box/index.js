@@ -9,6 +9,7 @@ const StyledBox = styled.section`
   width: 100%;
   display: ${({ flex }) => (flex ? "flex" : "block")};
   flex-direction: column;
+  position: relative;
   padding: ${(props) => (props.noPadding ? "0" : props.theme.spacing.gutter)}px;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {

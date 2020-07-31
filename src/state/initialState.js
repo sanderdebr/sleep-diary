@@ -7,7 +7,7 @@ export const initialState = {
     user: null,
   },
   activities: null,
-  loading: null,
+  loading: false,
 };
 
 export default initialState;

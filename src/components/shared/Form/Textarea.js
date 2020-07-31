@@ -37,7 +37,6 @@ const StyledTextarea = styled.textarea`
   color: ${({ theme }) => theme.palette.primary};
   font-family: inherit;
   resize: none;
-  margin-bottom: 0.75rem;
   height: 95px;
 `;
 

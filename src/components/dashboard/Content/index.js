@@ -12,7 +12,6 @@ function Content({ className, session }) {
       <Topbar />
       <StyledMain>
         <TopSection>
-          <H2 bottomMargin>Dashboard</H2>
           <Article>
             <Today className={className} session={session} />
           </Article>
@@ -29,9 +28,12 @@ function Content({ className, session }) {
 
 const StyledContent = styled.section`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    height: 100%;
+  }
 `;
 
 const StyledMain = styled.main`
@@ -39,28 +41,33 @@ const StyledMain = styled.main`
   height: 100%;
   background: ${({ theme }) => theme.palette.secondary};
   border-radius: 0 0 ${({ theme }) => theme.general.borderRadius}px 0;
-  display: grid;
-  grid-template-rows: auto auto;
-  row-gap: ${({ theme }) => theme.spacing.gutter}px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const TopSection = styled.section`
   width: 100%;
-  height: 325px;
-  padding: ${({ theme }) => theme.spacing.gutter / 2}px;
+  height: auto;
+  padding: 0;
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     padding: ${({ theme }) => theme.spacing.gutter}px;
-    height: 325px;
   }
 `;
 
 const BottomSection = styled.section`
   width: 100%;
-  padding: ${({ theme }) => theme.spacing.gutter}px;
+  height: 100%;
+  padding: 0;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    padding: ${({ theme }) => theme.spacing.gutter}px;
+    padding-top: 0;
+  }
 `;
 
 const Article = styled.article`
+  height: 100%;
   background: transparent;
   display: flex;
   justify-content: space-between;

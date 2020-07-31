@@ -5,7 +5,7 @@ import moment from "moment";
 import * as Actions from "~/src/common/actions";
 import { useAppContext } from "~/src/state/hooks";
 
-import { H4 } from "~/src/components/shared/Text";
+import { H1 } from "~/src/components/shared/Text";
 import { Number, Textarea } from "~/src/components/shared/Form";
 import { defaultActivity } from "~/src/common/constants";
 import ScoreCircle from "~/src/components/dashboard/Data/ScoreCircle";
@@ -59,7 +59,7 @@ function Data({ session, ...props }) {
     <DataStyles {...props}>
       <Left>
         <Score>
-          <H4>Today</H4>
+          <H1>Today</H1>
           <ScoreCircle percent={75} />
         </Score>
         <NumberWrapper>
@@ -120,7 +120,7 @@ const DataStyles = styled.section`
   height: 100%;
   padding: ${({ theme }) => theme.spacing.inner}px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
 
@@ -132,7 +132,7 @@ const DataStyles = styled.section`
 const Left = styled.div`
   width: 100%;
   height: 100%;
-  padding: ${({ theme }) => theme.spacing.inner}px;
+  padding: 0 ${({ theme }) => theme.spacing.inner}px;
   display: flex;
   text-align: center;
   flex-direction: row;
@@ -149,8 +149,12 @@ const Right = styled.div`
   padding: 0 ${({ theme }) => theme.spacing.inner}px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
+
+  textarea:last-child {
+    margin-top: 0.75rem;
+  }
 `;
 
 const Score = styled.div`

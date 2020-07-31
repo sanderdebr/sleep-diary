@@ -48,7 +48,7 @@ const fontSizes = {
 };
 
 const spacing = {
-  gutter: 40,
+  gutter: 30,
   inner: 20,
 };
 

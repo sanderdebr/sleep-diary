@@ -1,21 +1,26 @@
+import { withRouter } from "next/router";
 import styled, { keyframes } from "styled-components";
 import { fadeIn, fadeOut } from "~/src/common/styles/animations";
 
 import Icon from "~/src/components/dashboard/Icon";
 import ThemeToggle from "./ThemeToggle";
 import Spinner from "./Spinner";
-
+import { H4 } from "~/src/components/shared/Text";
 import { useAppContext } from "~/src/state/hooks";
 
-function Topbar() {
+function Topbar({ router }) {
   const { user, loading } = useAppContext();
+
+  let title = router.pathname.slice(1).split("");
+  title[0] = title[0].toUpperCase();
+  title = title.join("");
 
   return (
     <StyledTopbar>
-      <Welcome>{user && `Hi, ${user.name}`}</Welcome>
+      <H4 noMargin>{title}</H4>
       <Right>
         {loading && <Spinner />}
-        <Saved loading={loading}>Saved</Saved>
+        <Saved loading={loading ? 1 : 0}>Saved</Saved>
         <ThemeToggle />
         <TopbarIcon icon="bell" />
       </Right>
@@ -26,10 +31,14 @@ function Topbar() {
 const StyledTopbar = styled.section`
   position: absolute;
   display: flex;
-  right: 110px;
+  right: 90px;
   top: 30px;
   border: none;
   background: none;
+
+  h4 {
+    display: none;
+  }
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     position: relative;
@@ -44,6 +53,11 @@ const StyledTopbar = styled.section`
     justify-content: space-between;
     align-items: center;
     padding: ${({ theme }) => theme.spacing.gutter}px;
+
+    h4 {
+      display: block;
+      color: ${({ theme }) => theme.palette.secondary};
+    }
   }
 `;
 
@@ -92,4 +106,4 @@ const Welcome = styled.div`
   }
 `;
 
-export default Topbar;
+export default withRouter(Topbar);
