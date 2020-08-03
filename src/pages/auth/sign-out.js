@@ -1,21 +1,12 @@
-import { useEffect } from "react";
-
 import * as Constants from "~/src/common/constants";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-function Page() {
-  useEffect(() => {
-    const jwt = cookies.get(Constants.session.key);
+const jwt = cookies.get(Constants.session.key);
 
-    if (jwt) {
-      cookies.remove(Constants.session.key, { path: "/" });
-      window.location.href = "/";
-      return;
-    }
-  }, []);
-  return null;
+if (jwt) {
+  cookies.remove(Constants.session.key, { path: "/" });
 }
 
-export default Page;
+window.location.href = "/";

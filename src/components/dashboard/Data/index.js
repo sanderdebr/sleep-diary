@@ -11,29 +11,50 @@ import { defaultActivity } from "~/src/common/constants";
 import ScoreCircle from "~/src/components/dashboard/Data/ScoreCircle";
 
 function Data({ session, ...props }) {
-  const { dispatch } = useAppContext();
+  const { activities, currentActivity, dispatch } = useAppContext();
 
-  const [today, setToday] = useState(defaultActivity);
+  const [current, setCurrent] = useState(currentActivity);
   // Draft state for textarea only update DB onBlur
   const [draftState, setDraftState] = useState(defaultActivity);
 
+  // Load global state into local state when graph has been clicked
+  useEffect(() => {
+    // Find matching activity when day has been clicked
+    if (currentActivity && activities) {
+      const match = activities.filter((x) => {
+        const day = moment(x.day).date().toString();
+        return day === currentActivity.day;
+      });
+      if (match.length) {
+        setCurrent(match[0]);
+        setDraftState(match[0]);
+      }
+    }
+  }, [currentActivity]);
+
   const addActivity = async () => {
     dispatch({ type: "toggleLoading", value: true });
-    let result = await Actions.addActivity(session.id, today);
+    let result = await Actions.addActivity(session.id, current);
 
     let query = await Actions.getActivities(session.id);
     if (!query.error && !result.error) {
-      dispatch({ type: "updateActivities", value: query.result });
+      dispatch({
+        type: "updateActivities",
+        value: { activities: query.result, currentActivity: current },
+      });
     }
   };
 
   const updateActivity = async () => {
     dispatch({ type: "toggleLoading", value: true });
-    let result = await Actions.updateActivity(session.id, today);
+    let result = await Actions.updateActivity(session.id, current);
 
     let query = await Actions.getActivities(session.id);
     if (!query.error && !result.error) {
-      dispatch({ type: "updateActivities", value: query.result });
+      dispatch({
+        type: "updateActivities",
+        value: { activities: query.result, currentActivity: current },
+      });
     }
   };
 
@@ -55,7 +76,7 @@ function Data({ session, ...props }) {
         addActivity();
       } else {
         // If so, update activity and draft state
-        setToday(existingRecord[0]);
+        setCurrent(existingRecord[0]);
         setDraftState(existingRecord[0]);
       }
     };
@@ -66,7 +87,7 @@ function Data({ session, ...props }) {
   // Update activity on change in DB
   useEffect(() => {
     updateActivity();
-  }, [today]);
+  }, [current]);
 
   return (
     <DataStyles {...props}>
@@ -80,29 +101,29 @@ function Data({ session, ...props }) {
             placeholder="How did you feel on waking up?"
             type="number"
             name="energy"
-            state={today}
-            setState={setToday}
+            state={current}
+            setState={setCurrent}
           />
           <Number
             placeholder="How did you feel today?"
             type="number"
             name="feeling"
-            state={today}
-            setState={setToday}
+            state={current}
+            setState={setCurrent}
           />
           <Number
             placeholder="Total sleep in minutes"
             type="number"
             name="total_sleep"
-            state={today}
-            setState={setToday}
+            state={current}
+            setState={setCurrent}
           />
           <Number
             placeholder="Deep sleep in minutes"
             type="number"
             name="deep_sleep"
-            state={today}
-            setState={setToday}
+            state={current}
+            setState={setCurrent}
           />
         </NumberWrapper>
       </Left>
@@ -112,16 +133,16 @@ function Data({ session, ...props }) {
           name="activities"
           draftState={draftState}
           setDraftState={setDraftState}
-          state={today}
-          setState={setToday}
+          state={current}
+          setState={setCurrent}
         />
         <Textarea
           placeholder="Adjustments..."
           name="adjustments"
           draftState={draftState}
           setDraftState={setDraftState}
-          state={today}
-          setState={setToday}
+          state={current}
+          setState={setCurrent}
         />
       </Right>
     </DataStyles>
@@ -145,13 +166,14 @@ const DataStyles = styled.section`
 const Left = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 ${({ theme }) => theme.spacing.inner}px;
+  padding: ${({ theme }) => theme.spacing.inner}px 0;
   display: flex;
   text-align: center;
   flex-direction: row;
   border-right: 1px solid ${({ theme }) => theme.palette.bgColor};
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    padding: 0 ${({ theme }) => theme.spacing.inner}px;
     width: 800px;
   }
 `;
@@ -159,7 +181,7 @@ const Left = styled.div`
 const Right = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 ${({ theme }) => theme.spacing.inner}px;
+  padding: ${({ theme }) => theme.spacing.inner}px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -167,6 +189,10 @@ const Right = styled.div`
 
   textarea:last-child {
     margin-top: 0.75rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    padding: 0 ${({ theme }) => theme.spacing.inner}px;
   }
 `;
 

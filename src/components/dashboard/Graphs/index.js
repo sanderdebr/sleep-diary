@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import {
   BarChart,
   Bar,
@@ -18,10 +18,11 @@ import { useAppContext } from "~/src/state/hooks";
 import { H4 } from "~/src/components/shared/Text";
 
 function Graphs() {
-  const { activities } = useAppContext();
+  const { activities, dispatch } = useAppContext();
   const graphBox = useRef();
   const [chart, setChart] = useState({ width: 300, height: 200 });
   const [data, setData] = useState([]);
+  const theme = useTheme();
 
   const handleResize = () => {
     const { offsetWidth, offsetHeight } = graphBox.current;
@@ -55,6 +56,13 @@ function Graphs() {
     };
   }, []);
 
+  const handleClick = (activity) => {
+    dispatch({
+      type: "setCurrentActivity",
+      value: activity,
+    });
+  };
+
   return (
     <Wrapper>
       <Graph ref={graphBox}>
@@ -65,7 +73,11 @@ function Graphs() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Deep sleep" fill="#8884d8" />
+          <Bar
+            dataKey="Deep sleep"
+            fill={theme.palette.aurora.red}
+            onClick={handleClick}
+          />
         </BarChart>
       </Graph>
       <Graph ref={graphBox}>
@@ -76,7 +88,11 @@ function Graphs() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Total sleep" fill="#82ca9d" />
+          <Bar
+            dataKey="Total sleep"
+            fill={theme.palette.aurora.orange}
+            onClick={handleClick}
+          />
         </BarChart>
       </Graph>
       <Graph ref={graphBox}>
@@ -87,7 +103,11 @@ function Graphs() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Energy" fill="#8884d8" />
+          <Bar
+            dataKey="Energy"
+            fill={theme.palette.aurora.green}
+            onClick={handleClick}
+          />
         </BarChart>
       </Graph>
     </Wrapper>
@@ -96,7 +116,7 @@ function Graphs() {
 
 const Wrapper = styled.section`
   background: ${({ theme }) => theme.palette.bg};
-  padding: ${({ theme }) => theme.spacing.inner}px;
+  padding: 0;
   width: 100%;
   display: flex;
   flex-direction: column;

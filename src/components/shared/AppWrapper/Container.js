@@ -13,7 +13,7 @@ function Container({ children, path }) {
 
 const ContainerWrapper = styled.main`
   z-index: 1;
-  width: 85vw;
+  width: 100vw;
   height: 100%;
   box-shadow: ${({ theme }) => theme.mixins.boxShadow};
   margin-top: 2em;

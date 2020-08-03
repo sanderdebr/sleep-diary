@@ -44,6 +44,9 @@ function Dashboard({ session, jwt }) {
   if (jwt) {
     useEffect(() => {
       cookies.set(Constants.session.key, jwt, { path: "/" });
+      if (!window.location.pathname.includes("dashboard")) {
+        window.history.pushState("", "", "/dashboard");
+      }
       return;
     }, []);
   }

@@ -21,6 +21,11 @@ const NoteWrapper = styled.footer`
   width: 100%;
   font-size: 80%;
   opacity: 50%;
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.media.desktop}px) {
+    display: block;
+  }
 `;
 
 export default Note;

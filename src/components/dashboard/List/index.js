@@ -33,14 +33,17 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
   display: ${({ open }) => (open ? "block" : "none")};
-  background: ${({ open }) => (open ? "white" : "none")};
+  background: ${({ open, theme }) => (open ? theme.palette.bg : "none")};
   right: ${({ open }) => (open ? "10%" : "0")};
   top: ${({ open }) => (open ? "13%" : "0")};
   position: ${({ open }) => (open ? "absolute" : "inherit")};
   border-radius: ${({ theme }) => theme.general.borderRadius}px;
+  z-index: 3;
+  box-shadow: 10px 10px 96px -44px rgba(0, 0, 0, 0.75);
 
   @media (min-width: ${({ theme }) => theme.media.desktop}px) {
     display: block;
+    box-shadow: none;
   }
 `;
 

@@ -18,9 +18,17 @@ export const reducer = (state, action) => {
     case "updateUser":
       return { ...state, user: action.value };
     case "updateActivities":
-      return { ...state, activities: action.value, loading: false };
-    case "syncActivities":
-      return state;
+      return {
+        ...state,
+        activities: action.value.activities,
+        currentActivity: action.value.current,
+        loading: false,
+      };
+    case "setCurrentActivity":
+      return {
+        ...state,
+        currentActivity: action.value,
+      };
     case "toggleLoading":
       return { ...state, loading: action.value };
     default:
