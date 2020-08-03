@@ -1,6 +1,8 @@
 # sleepdiary
 ### Keep track of your sleep quality and discover how to improve it
 
+![Image of sleepdiary app](https://i.ibb.co/0Kxqb2R/sleepdiary2.png)
+
 <hr />
 
 Using:
@@ -18,3 +20,5 @@ Using:
 Todo
 * API sync with FitBit API
 * CI/CD Pipeline through Github Actions
+
+![Image of sleepdiary app](https://i.ibb.co/0Kxqb2R/sleepdiary1.png)
