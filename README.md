@@ -1,4 +1,7 @@
 # sleepdiary
+### Keep track of your sleep quality and discover how to improve it
+
+<hr />
 
 Using:
 
@@ -13,4 +16,5 @@ Using:
 * Deployment: Digital Ocean Ubuntu 18.04 server
 
 Todo
+* API sync with FitBit API
 * CI/CD Pipeline through Github Actions
