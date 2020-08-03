@@ -9,6 +9,7 @@ Using:
 * Database: sqlite3
 * Authentication: JWT + GoogleAPIs + bcrypt
 * Styling: Styled Components (mobile first) + [NordTheme color palette](https://www.nordtheme.com/)
+* Charts: [Recharts](https://github.com/recharts/recharts)
 * Deployment: Digital Ocean Ubuntu 18.04 server
 
 Todo
