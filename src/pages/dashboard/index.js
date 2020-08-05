@@ -13,8 +13,10 @@ import Content from "~/src/components/dashboard/Content";
 
 const cookies = new Cookies();
 
-function Dashboard({ session, jwt }) {
+function Dashboard({ session, jwt, fitbit }) {
   const { dispatch } = useAppContext();
+
+  console.log("dashboard fitbit: ", fitbit);
 
   // Update activities
   useEffect(() => {
@@ -65,9 +67,10 @@ function Dashboard({ session, jwt }) {
 export const getServerSideProps = async (ctx) => {
   let session = ctx.query.session || null;
   let jwt = ctx.query.jwt || null;
+  let fitbit = ctx.query.fitbit || null;
 
   return {
-    props: { session, jwt },
+    props: { session, jwt, fitbit },
   };
 };
 
