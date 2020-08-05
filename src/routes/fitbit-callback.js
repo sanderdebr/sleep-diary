@@ -7,7 +7,10 @@ export default async (req, res, app) => {
     return app.render(req, res, "/auth/sign-in-error/", { session: null });
   }
 
-  let access_token = req.query.code;
+  let access_token = req.query.code || null;
+
+  console.log("TOKEN server side: ", access_token);
+  console.log("SESSION fitbit callback url: ", session);
 
   return app.render(req, res, "/dashboard/settings", {
     session,
