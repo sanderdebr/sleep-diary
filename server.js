@@ -48,7 +48,7 @@ app.prepare().then(() => {
   });
 
   server.get("/fitbit-callback", async (req, res) => {
-    return await Routes.fitbit.fitbitCallback(req, res, app);
+    return await Routes.fitbitCallback(req, res, app);
   });
 
   server.get("/auth/sign-in-error", async (req, res) => {
