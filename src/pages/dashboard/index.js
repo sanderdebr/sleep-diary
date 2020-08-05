@@ -55,7 +55,7 @@ function Dashboard({ session, jwt, fitbit }) {
 
   return (
     <>
-      <Head title="Home | SleepDiary" />
+      <Head title="Dashboard | SleepDiary" />
       <Box noPadding flex>
         <Sidebar />
         <Content session={session} />

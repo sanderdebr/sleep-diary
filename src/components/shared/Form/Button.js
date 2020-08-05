@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function Button({ text, props }) {
+function Button({ text, ...props }) {
   return (
     <Wrapper>
       <ButtonStyles {...props}>

@@ -7,10 +7,5 @@ export default async (req, res, app) => {
     return app.render(req, res, "/auth/sign-in-error/", { session: null });
   }
 
-  let access_token = req.query.code;
-
-  return app.render(req, res, "/dashboard/settings", {
-    session,
-    fitbit: access_token,
-  });
+  return app.render(req, res, "/dashboard/settings", { session });
 };

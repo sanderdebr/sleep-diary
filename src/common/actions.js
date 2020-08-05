@@ -100,3 +100,21 @@ export const updateActivity = async (userId, activity) => {
 
   return json;
 };
+
+export const getFitbitURL = async () => {
+  const options = {
+    method: "POST",
+    headers: getHeaders(),
+    credentials: "include",
+    body: null,
+  };
+
+  const response = await fetch(`${SERVER_PATH}/api/fitbit-url`, options);
+  const json = await response.json();
+
+  if (json.error) {
+    return json.error;
+  }
+
+  return json;
+};

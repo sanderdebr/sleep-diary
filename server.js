@@ -35,6 +35,10 @@ app.prepare().then(() => {
     return await Routes.api.getActivities(req, res);
   });
 
+  server.post("/api/fitbit-url", async (req, res) => {
+    return await Routes.api.fitbitURL(req, res);
+  });
+
   server.get("/", async (req, res) => {
     return await Routes.signIn(req, res, app);
   });
@@ -43,8 +47,8 @@ app.prepare().then(() => {
     return await Routes.signInCallback(req, res, app);
   });
 
-  server.get("/fitbit-callback", async (req, res) => {
-    return await Routes.fitbitCallback(req, res, app);
+  server.get("/fitbit/fitbit-callback", async (req, res) => {
+    return await Routes.fitbit.fitbitCallback(req, res, app);
   });
 
   server.get("/auth/sign-in-error", async (req, res) => {
@@ -53,6 +57,10 @@ app.prepare().then(() => {
 
   server.get("/dashboard", Middleware.RequireAuth, async (req, res) => {
     await Routes.dashboard(req, res, app);
+  });
+
+  server.get("/settings", Middleware.RequireAuth, async (req, res) => {
+    await Routes.settings(req, res, app);
   });
 
   server.all("*", (req, res) => {

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import moment from "moment";
 
 import { H2 } from "~/src/components/shared/Text";
 import Topbar from "~/src/components/dashboard/Topbar";

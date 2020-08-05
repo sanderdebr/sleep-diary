@@ -7,3 +7,6 @@ export const REDIRECT_URIS =
     ? "https://sleepdiary.nl/auth/sign-in-callback"
     : "http://localhost:8000/auth/sign-in-callback";
 export const JWT_SECRET = process.env.JWT_SECRET;
+
+export const FITBIT_CLIENT_ID = process.env.FITBIT_CLIENT_ID;
+export const FITBIT_CLIENT_SECRET = process.env.FITBIT_CLIENT_SECRET;
