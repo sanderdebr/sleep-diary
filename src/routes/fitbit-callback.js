@@ -11,6 +11,6 @@ export default async (req, res, app) => {
 
   return app.render(req, res, "/dashboard/settings", {
     session,
-    fitbit: access_token,
+    access_token,
   });
 };
