@@ -47,7 +47,7 @@ app.prepare().then(() => {
     return await Routes.signInCallback(req, res, app);
   });
 
-  server.get("/fitbit/fitbit-callback", async (req, res) => {
+  server.get("/fitbit-callback", async (req, res) => {
     return await Routes.fitbit.fitbitCallback(req, res, app);
   });
 
