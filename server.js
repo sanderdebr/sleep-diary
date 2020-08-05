@@ -55,16 +55,6 @@ app.prepare().then(() => {
     await Routes.dashboard(req, res, app);
   });
 
-  server.get("/auth/sign-out", async (req, res) => {
-    const { session } = await Session.getSession(req);
-
-    if (!session || session.error) {
-      return app.render(req, res, "/auth/sign-in-error", { session: null });
-    }
-
-    return app.render(req, res, "/auth/sign-out");
-  });
-
   server.all("*", (req, res) => {
     return handle(req, res);
   });

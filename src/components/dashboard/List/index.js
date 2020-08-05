@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import Link from "next/link";
+import Cookies from "universal-cookie";
+
+import * as Constants from "~/src/common/constants";
 
 import { ListItem } from "./ListItem";
 import { ListIcon } from "./ListIcon";
 
 function List({ items = [], pathname, open }) {
+  const logOut = () => {
+    const cookies = new Cookies();
+    const jwt = cookies.get(Constants.session.key);
+    if (jwt) {
+      cookies.remove(Constants.session.key, { path: "/" });
+    }
+    window.location.href = "/";
+  };
+
   return (
     <StyledList open={open}>
       {items.map((item, i) => (
@@ -17,14 +29,10 @@ function List({ items = [], pathname, open }) {
           </a>
         </Link>
       ))}
-      <Link href="/auth/sign-out">
-        <a>
-          <Logout open={open}>
-            <ListIcon icon="logout" />
-            logout
-          </Logout>
-        </a>
-      </Link>
+      <Logout onClick={logOut} open={open}>
+        <ListIcon icon="logout" />
+        logout
+      </Logout>
     </StyledList>
   );
 }
@@ -51,6 +59,8 @@ const Logout = styled(ListItem)`
   color: ${({ theme }) => theme.palette.primary};
   position: ${({ open }) => (open ? "inherit" : "absolute")};
   bottom: 2rem;
+  cursor: pointer;
+
   svg {
     fill: ${({ theme }) => theme.palette.primary};
   }
