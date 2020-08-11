@@ -127,14 +127,6 @@ export const getFitbitAccessToken = async (code = null, encoded = null) => {
       authorization: `Basic ${encoded}`,
     },
     body: `client_id=22BWK3&grant_type=authorization_code&redirect_uri=https://sleepdiary.nl/fitbit-callback&code=${code}`,
-    // body: JSON.stringify({
-    //   code,
-    //   grant_type: "authorization_code",
-    //   client_id: "22BWK3",
-    //   redirect_uri: "localhost:8000/fitbit-callback?access",
-    //   state: "accessed",
-    //   expires_in: 3600,
-    // }),
   };
 
   const response = await fetch(`https://api.fitbit.com/oauth2/token`, options);
