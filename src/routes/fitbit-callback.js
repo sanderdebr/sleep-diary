@@ -1,5 +1,5 @@
 import * as Session from "~/src/common/session";
-import * as Credentials from "~/src/common/Credentials";
+import * as Credentials from "~/src/common/credentials";
 
 export default async (req, res, app) => {
   const { session } = await Session.getSession(req);
