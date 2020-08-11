@@ -126,7 +126,7 @@ export const getFitbitAccessToken = async (code = null, encoded = null) => {
       "Content-Type": "application/x-www-form-urlencoded",
       authorization: `Basic ${encoded}`,
     },
-    body: `client_id=22BWK3&grant_type=authorization_code&redirect_uri=https://sleepdiary.nl/auth/sign-in-callback&code=${code}`,
+    body: `client_id=22BWK3&grant_type=authorization_code&redirect_uri=https://sleepdiary.nl/fitbit-callback&code=${code}`,
     // body: JSON.stringify({
     //   code,
     //   grant_type: "authorization_code",
