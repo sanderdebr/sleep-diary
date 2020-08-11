@@ -118,3 +118,27 @@ export const getFitbitURL = async () => {
 
   return json;
 };
+
+export const getFitbitAccessToken = async (code = null, encoded = null) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      authorization: `Basic ${encoded}`,
+    },
+    body: `client_id=22BWK3&grant_type=authorization_code&redirect_uri=http://localhost:8000/fitbit-callback&code=${code}`,
+    // body: JSON.stringify({
+    //   code,
+    //   grant_type: "authorization_code",
+    //   client_id: "22BWK3",
+    //   redirect_uri: "localhost:8000/fitbit-callback?access",
+    //   state: "accessed",
+    //   expires_in: 3600,
+    // }),
+  };
+
+  const response = await fetch(`https://api.fitbit.com/oauth2/token`, options);
+  const json = await response.json();
+
+  return json;
+};

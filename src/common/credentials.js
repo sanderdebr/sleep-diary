@@ -10,3 +10,5 @@ export const JWT_SECRET = process.env.JWT_SECRET;
 
 export const FITBIT_CLIENT_ID = process.env.FITBIT_CLIENT_ID;
 export const FITBIT_CLIENT_SECRET = process.env.FITBIT_CLIENT_SECRET;
+
+export const berend = 5;

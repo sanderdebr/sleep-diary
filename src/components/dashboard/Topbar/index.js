@@ -8,12 +8,12 @@ import Spinner from "./Spinner";
 import { H4 } from "~/src/components/shared/Text";
 import { useAppContext } from "~/src/state/hooks";
 
+import * as Utilities from "~/src/common/utilities";
+
 function Topbar({ router }) {
   const { user, loading } = useAppContext();
 
-  let title = router.pathname.slice(1).split("");
-  title[0] = title[0].toUpperCase();
-  title = title.join("");
+  const title = Utilities.pathToTitle(router.pathname);
 
   return (
     <StyledTopbar>

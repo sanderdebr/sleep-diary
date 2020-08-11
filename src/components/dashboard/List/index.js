@@ -20,14 +20,12 @@ function List({ items = [], pathname, open }) {
   return (
     <StyledList open={open}>
       {items.map((item, i) => (
-        <Link href={item.title.toLowerCase()} key={i}>
-          <a>
-            <ListItem active={item.icon === pathname}>
-              <ListIcon active={item.icon === pathname} icon={item.icon} />
-              {item.title}
-            </ListItem>
-          </a>
-        </Link>
+        <a href={item.title.toLowerCase()} key={i}>
+          <ListItem active={item.icon === pathname}>
+            <ListIcon active={item.icon === pathname} icon={item.icon} />
+            {item.title}
+          </ListItem>
+        </a>
       ))}
       <Logout onClick={logOut} open={open}>
         <ListIcon icon="logout" />

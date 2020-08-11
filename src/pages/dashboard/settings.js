@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import * as Actions from "~/src/common/actions";
@@ -9,9 +10,13 @@ import Topbar from "~/src/components/dashboard/Topbar";
 import { Button, Error } from "~/src/components/shared/Form";
 
 function Settings({ access_token = null }) {
-  let error = null;
+  const [error, setError] = useState(null);
 
-  console.log("access_token: ", access_token);
+  useEffect(() => {
+    if (access_token.errors) {
+      setError(access_token.errors[0].message);
+    }
+  }, [access_token]);
 
   const getAccess = async () => {
     const result = await Actions.getFitbitURL();
@@ -20,7 +25,7 @@ function Settings({ access_token = null }) {
       const url = result.fitbitURL;
       window.location.href = url;
     } else {
-      error = result.error;
+      setError(result.error);
     }
   };
 
@@ -45,10 +50,19 @@ function Settings({ access_token = null }) {
 }
 
 export const getServerSideProps = async (ctx) => {
-  let access_token = ctx.query.access_token || null;
+  let authorization_token = ctx.query.authorization_token || null;
+  let encoded = ctx.query.encoded || null;
+  let access_token = null;
+
+  if (authorization_token && encoded) {
+    access_token = await Actions.getFitbitAccessToken(
+      authorization_token,
+      encoded
+    );
+  }
 
   return {
-    props: { access_token },
+    props: { authorization_token, access_token },
   };
 };
 

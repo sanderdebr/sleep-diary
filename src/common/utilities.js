@@ -21,3 +21,15 @@ export const parseAuthHeader = (value) => {
   const matches = value.match(/(\S+)\s+(\S+)/);
   return matches && { scheme: matches[1], value: matches[2] };
 };
+
+export const pathToTitle = (path) => {
+  if (path instanceof Object || path instanceof Array) {
+    return JSON.stringify(path);
+  }
+
+  const arr = path.split("/");
+  const title = arr[arr.length - 1].split("");
+  title[0] = title[0].toUpperCase();
+
+  return title;
+};

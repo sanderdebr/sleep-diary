@@ -16,8 +16,6 @@ const cookies = new Cookies();
 function Dashboard({ session, jwt, fitbit }) {
   const { dispatch } = useAppContext();
 
-  console.log("dashboard fitbit: ", fitbit);
-
   // Update activities
   useEffect(() => {
     const fetchActivities = async () => {
