@@ -13,8 +13,10 @@ function Settings({ access_token = null }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (access_token.errors) {
-      setError(access_token.errors[0].message);
+    if (access_token) {
+      if (access_token.errors) {
+        setError(access_token.errors[0].message);
+      }
     }
   }, [access_token]);
 
