@@ -8,7 +8,7 @@ export default async (req, res) => {
     return res.status(500).send({ error: "No authorization" });
   }
 
-  let redirect_uri = "https://sleepdiary.nl/fitbit-callback";
+  let redirect_uri = `${window.location.hostname}/fitbit-callback`;
 
   let fitbitURL = `https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=${Credentials.FITBIT_CLIENT_ID}&redirect_uri=${redirect_uri}&scope=sleep`;
 
