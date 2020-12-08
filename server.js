@@ -55,7 +55,7 @@ app.prepare().then(() => {
     return app.render(req, res, "/auth/sign-in-error", { session: null });
   });
 
-  server.get("/dashboard", Middleware.RequireAuth, async (req, res) => {
+  server.get("/dashboard", async (req, res) => {
     await Routes.dashboard(req, res, app);
   });
 
