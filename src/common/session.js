@@ -22,6 +22,8 @@ export const getSession = async (req, existingToken = undefined) => {
     let decode = JWT.verify(token, Credentials.JWT_SECRET);
 
     session = await Database.getUserByEmail({ email: decode.email });
+
+    console.log(session, decode.email);
   } catch (err) {
     return err;
   }
