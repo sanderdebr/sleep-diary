@@ -8,7 +8,7 @@ const runQuery = async ({ queryFn, errorFn, label }) => {
     response = errorFn(err);
   }
 
-  console.log("[db-query]", { query: label });
+  console.log("[db-query]", { query: label }, response);
   return response;
 };
 
