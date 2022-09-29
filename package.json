@@ -36,7 +36,7 @@
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "recharts": "^1.8.5",
+    "recharts": "^2.1.14",
     "sqlite3": "^4.2.0",
     "styled-components": "^5.1.1",
     "universal-cookie": "^4.0.3",
