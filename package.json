@@ -30,7 +30,7 @@
     "global": "^4.4.0",
     "googleapis": "^52.1.0",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.21.1",
+    "knex": "^2.4.0",
     "moment": "^2.27.0",
     "next": "^9.4.4",
     "nodemon": "^2.0.4",
